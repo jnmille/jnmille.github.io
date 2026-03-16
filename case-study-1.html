@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Screen Mental Models — Jazzmyne Miller</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white:    #F5F5F0;
+  --offwhite: #EFEFEA;
+  --silver:   #E0E0DA;
+  --gold:     #FCA311;
+  --navy:     #14213D;
+  --navy-soft:#2a3a5c;
+  --ink:      #111114;
+  --muted:    #6B6B76;
+  --rule:     rgba(0,0,0,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* PASSWORD GATE */
+#password-gate {
+  position: fixed;
+  inset: 0;
+  background: var(--navy);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.gate-lock { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+.gate-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.gate-sub {
+  font-size: 0.9rem;
+  color: rgba(245,245,240,0.55);
+  text-align: center;
+  max-width: 32ch;
+  line-height: 1.6;
+}
+
+.gate-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.gate-input {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  text-align: center;
+  letter-spacing: 0.1em;
+  transition: border-color 0.2s;
+}
+
+.gate-input::placeholder { color: rgba(255,255,255,0.3); }
+.gate-input:focus { border-color: var(--gold); }
+
+.gate-btn {
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.gate-btn:hover { background: #e8940f; }
+
+.gate-error {
+  font-size: 0.8rem;
+  color: #ff6b6b;
+  display: none;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.25rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(245,245,240,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #6B6B76;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--navy); }
+.nav-links a.active { color: var(--gold); }
+
+.nav-dropdown { position: relative; }
+
+.nav-dropdown-toggle {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #6B6B76;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+  text-decoration: none;
+}
+
+.nav-dropdown-toggle:hover { color: var(--navy); }
+.nav-dropdown-toggle svg { transition: transform 0.2s; }
+.nav-dropdown:hover .nav-dropdown-toggle svg { transform: rotate(180deg); }
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  min-width: 280px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.15s;
+  line-height: 1.4;
+}
+
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: var(--offwhite); }
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  padding: 7rem 3.5rem 4rem;
+}
+
+.hero-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.back:hover { opacity: 1; }
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tag::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.cs-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.lede {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(245,245,240,0.65);
+  line-height: 1.75;
+  max-width: 55ch;
+  margin-bottom: 2.5rem;
+}
+
+.meta {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.meta-item strong {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+
+.meta-item span {
+  font-size: 0.88rem;
+  color: rgba(245,245,240,0.75);
+}
+
+/* HERO IMAGE */
+.hero-image {
+  width: 100%;
+  height: 400px;
+  background: var(--offwhite);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px dashed rgba(206,162,115,0.4);
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* BODY */
+.body {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 4rem 3.5rem 7rem;
+}
+
+.body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.body h2:first-child { margin-top: 0; }
+
+.body p {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #3a3a3a;
+  margin-bottom: 1.25rem;
+}
+
+.body p:last-child { margin-bottom: 0; }
+.body p strong { color: var(--navy); font-weight: 600; }
+
+/* FLOAT IMAGE - newspaper style */
+.img-float-right {
+  float: right;
+  margin: 0 0 1.5rem 2.5rem;
+  max-width: 280px;
+}
+
+.img-float-right img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.img-float-right figcaption {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* IMAGE BLOCKS */
+.img-block { margin: 2rem 0; }
+
+.img-block .placeholder {
+  width: 100%;
+  background: var(--offwhite);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px dashed rgba(206,162,115,0.5);
+}
+
+.img-block img { width: 100%; height: auto; display: block; }
+
+.img-block figcaption {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  padding: 2rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+.footer-right {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .hero { padding: 6rem 1.5rem 3rem; }
+  .body { padding: 3rem 1.5rem 5rem; }
+  .meta { gap: 1.5rem; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE DISABLED -->
+<!--
+<div id="password-gate">
+  <div class="gate-lock">🔒</div>
+  <p class="gate-title">This case study is password protected</p>
+  <p class="gate-sub">Please enter the password to view this project.</p>
+  <div class="gate-form">
+    <input type="password" class="gate-input" id="gate-input" placeholder="Enter password" />
+    <button class="gate-btn" onclick="checkPassword()">View Case Study</button>
+    <p class="gate-error" id="gate-error">Incorrect password. Please try again.</p>
+  </div>
+</div>
+-->
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-name">Jazzmyne Miller</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li class="nav-dropdown">
+      <a href="work.html" class="nav-dropdown-toggle">
+        Work
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <div class="nav-dropdown-menu">
+        <a href="case-study-1.html" class="nav-dropdown-item active">Home Screen Mental Models</a>
+        <a href="case-study-2.html" class="nav-dropdown-item">RTC Tracking Survey</a>
+        <a href="case-study-3.html" class="nav-dropdown-item">Decoding Player Sentiment</a>
+        <a href="case-study-4.html" class="nav-dropdown-item">Unlocking Customer Segments through Predictive Modeling</a>
+        <a href="data-projects.html" class="nav-dropdown-item">Other Data Analysis Projects</a>
+      </div>
+    </li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="tag">Case Study · Qualitative Research</div>
+    <h1 class="cs-title">Home Screen Mental Models</h1>
+    <p class="lede">Understanding how players navigate and mentally organize the Wordscapes interface to inform a major UI redesign.</p>
+    <div class="meta">
+      <div class="meta-item"><strong>Company</strong><span>PeopleFun</span></div>
+      <div class="meta-item"><strong>Product</strong><span>Wordscapes</span></div>
+      <div class="meta-item"><strong>Method</strong><span>Moderated Interviews</span></div>
+      <div class="meta-item"><strong>My Role</strong><span>Senior User Researcher</span></div>
+      <div class="meta-item"><strong>Participants</strong><span>8 Players</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <h2>Background</h2>
+  <div class="clearfix">
+    <figure class="img-float-right">
+      <img src="wordscapes_home_screen.png" alt="Wordscapes Home Screen" />
+      <figcaption>The Wordscapes Home Screen</figcaption>
+    </figure>
+    <p>Wordscapes is a casual mobile word puzzle game developed by PeopleFun. Players connect letters to form words and complete crossword-style puzzles set against scenic landscape backgrounds. With more than 10 million players and a 22% share of the global word games market, it is one of the most widely played games in its category. As of 2026, the game averages approximately 2 million daily active players.</p>
+    <p>Since launching in 2017, Wordscapes has introduced new features and entry points on the Home Screen. Over time, these additions increased the number of visible icons and UI elements players encounter when starting a session.</p>
+  </div>
+
+  <h2>Challenge</h2>
+  <p>The Game Team wanted to reorganize and simplify the Home Screen to reduce perceived visual clutter and create space for new features and meta systems. However, the team had limited insight into how players actually used the screen. Before making structural changes, we needed to understand how players navigate and prioritize features in order to reduce the risk of disrupting established player behaviors and habits.</p>
+
+  <h2>Problem</h2>
+  <p>The team lacked visibility into how players navigate the Home Screen, which features anchor their daily routines, and how players mentally organize the different elements on the screen. Without this understanding, it was difficult to determine which areas of the interface could be safely reorganized without negatively affecting player engagement and retention.</p>
+
+  <h2>My Role</h2>
+  <p>I collaborated with UX and Design to identify the core research questions and design a Home Screen customization exercise. I wrote the moderator guide, recruited participants, and conducted remote moderated interviews with highly engaged and tenured Wordscapes players.</p>
+
+  <h2>Process</h2>
+  <p>I conducted 60-minute remote moderated interviews with eight highly engaged Wordscapes players recruited through an in-game recruitment survey. Sessions began with a discussion of players' daily routines and how they currently navigate the Home Screen. Participants then completed a customization exercise in which they arranged feature icons on a blank Home Screen, revealing how they mentally organize the interface.</p>
+
+  <div class="img-block">
+    <figure>
+      <img src="home_screen_process.png" alt="Research session screenshot" />
+      <figcaption>Participant completing the Home Screen customization exercise during a remote moderated session</figcaption>
+    </figure>
+  </div>
+
+  <h2>What We Learned</h2>
+  <p>Players mentally organize the Home Screen into spatial zones and rely on a small set of routine features such as Daily Puzzle and Daily Goals to anchor their sessions. The research also showed that feature placement alone does not drive engagement, as some elements were seen as appropriately placed but were rarely actively checked.</p>
+
+  <div class="img-block">
+    <figure>
+      <img src="home_screen_findings.png" alt="Zone map deliverable" />
+      <figcaption>Zone map synthesized from session findings and delivered to cross-functional teams</figcaption>
+    </figure>
+  </div>
+
+  <h2>Impact</h2>
+  <p>The research clarified which areas of the Home Screen anchor player routines and which areas function as secondary spaces. These insights helped the team identify where new features could be introduced without disrupting established player habits. The findings informed follow-up product experiments, including an A/B test of the Daily Puzzle location, the removal of the Dictionary feature, and testing future placements for tournaments and daily features.</p>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Jazzmyne Miller</div>
+  <div class="footer-right">© 2025</div>
+</footer>
+
+<!-- Password JS disabled temporarily -->
+<!--
+<script>
+  const PASSWORD = 'research2025';
+
+  function checkPassword() {
+    const input = document.getElementById('gate-input').value;
+    const error = document.getElementById('gate-error');
+    if (input === PASSWORD) {
+      document.getElementById('password-gate').style.display = 'none';
+      sessionStorage.setItem('cs1-unlocked', 'true');
+    } else {
+      error.style.display = 'block';
+      document.getElementById('gate-input').value = '';
+    }
+  }
+
+  document.getElementById('gate-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  if (sessionStorage.getItem('cs1-unlocked') === 'true') {
+    document.getElementById('password-gate').style.display = 'none';
+  }
+</script>
+-->
+
+</body>
+</html>

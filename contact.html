@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Jazzmyne Miller</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white:    #F5F5F0;
+  --gold:     #FCA311;
+  --gold-dim: rgba(252,163,17,0.1);
+  --gold-mid: rgba(252,163,17,0.3);
+  --navy:     #14213D;
+  --navy-soft:#2a3a5c;
+  --muted:    rgba(245,245,240,0.55);
+  --rule:     rgba(245,245,240,0.1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.25rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(245,245,240,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #6B6B76;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--navy); }
+.nav-links a.active { color: var(--gold); }
+
+/* DROPDOWN */
+.nav-dropdown { position: relative; }
+
+.nav-dropdown-toggle {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #6B6B76;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+}
+
+.nav-dropdown-toggle:hover { color: var(--navy); }
+
+.nav-dropdown-toggle svg { transition: transform 0.2s; }
+.nav-dropdown:hover .nav-dropdown-toggle svg { transform: rotate(180deg); }
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: 0;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.08);
+  min-width: 280px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: #EFEFEA; color: var(--navy); }
+
+/* MAIN */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background decoration */
+main::before {
+  content: '';
+  position: absolute;
+  top: -150px; right: -150px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(252,163,17,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+main::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(245,245,240,0.03) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.contact-container {
+  max-width: 580px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.contact-eyebrow::before,
+.contact-eyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.contact-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.contact-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 3.5rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.contact-link-primary {
+  background: var(--gold);
+  color: var(--navy);
+  border: 2px solid var(--gold);
+}
+
+.contact-link-primary:hover {
+  background: transparent;
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.contact-link-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(245,245,240,0.3);
+}
+
+.contact-link-secondary:hover {
+  border-color: var(--white);
+  transform: translateY(-2px);
+}
+
+.contact-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  margin-bottom: 2rem;
+}
+
+.contact-sign {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.contact-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+/* FOOTER */
+footer {
+  background: rgba(0,0,0,0.2);
+  padding: 1.5rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+.footer-right {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,245,240,0.25);
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .contact-links { flex-direction: column; align-items: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div id="nav-placeholder"></div>
+<script>
+  fetch('nav.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        if (a.href === window.location.href) a.classList.add('active');
+      });
+    });
+</script>
+
+<!-- MAIN -->
+<main>
+  <div class="contact-container">
+    <div class="contact-eyebrow">Contact</div>
+    <h1 class="contact-heading">Let's Work Together</h1>
+    <p class="contact-sub">Open to senior individual contributor roles and freelance consulting opportunities where research has a real seat at the table.</p>
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#84eeeae9ede8e8e1f6e9e5c4e3e9e5ede8aae7ebe9" class="contact-link contact-link-primary">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.3"/></svg>
+        Email Me
+      </a>
+      <a href="https://www.linkedin.com/in/jnmillerma" target="_blank" class="contact-link contact-link-secondary">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 6v4M4 4.5v.01M7 10V8a1 1 0 012 0v2M7 6v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <div class="contact-divider"></div>
+    <span class="contact-sign">🖖</span>
+    <p class="contact-tagline">Live long and research</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Jazzmyne Miller</div>
+  <div class="footer-right

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluating a New Competitive Feature — Jazzmyne Miller</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white:    #F5F5F0;
+  --offwhite: #EFEFEA;
+  --silver:   #E0E0DA;
+  --gold:     #FCA311;
+  --navy:     #14213D;
+  --navy-soft:#2a3a5c;
+  --ink:      #111114;
+  --muted:    #6B6B76;
+  --rule:     rgba(0,0,0,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.25rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(245,245,240,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #6B6B76;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--navy); }
+.nav-links a.active { color: var(--gold); }
+
+.nav-dropdown { position: relative; }
+
+.nav-dropdown-toggle {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #6B6B76;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+  text-decoration: none;
+}
+
+.nav-dropdown-toggle:hover { color: var(--navy); }
+.nav-dropdown-toggle svg { transition: transform 0.2s; }
+.nav-dropdown:hover .nav-dropdown-toggle svg { transform: rotate(180deg); }
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  min-width: 280px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.15s;
+  line-height: 1.4;
+}
+
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: var(--offwhite); }
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  padding: 7rem 3.5rem 4rem;
+}
+
+.hero-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tag::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.cs-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.lede {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(245,245,240,0.65);
+  line-height: 1.75;
+  max-width: 55ch;
+  margin-bottom: 2.5rem;
+}
+
+.meta {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.meta-item strong {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+
+.meta-item span {
+  font-size: 0.88rem;
+  color: rgba(245,245,240,0.75);
+}
+
+/* BODY */
+.body {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 4rem 3.5rem 7rem;
+}
+
+.body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.body h2:first-child { margin-top: 0; }
+
+.body p {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #3a3a3a;
+  margin-bottom: 1.25rem;
+}
+
+.body p:last-child { margin-bottom: 0; }
+.body p strong { color: var(--navy); font-weight: 600; }
+
+.body ul {
+  margin: 0.5rem 0 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.body ul li {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #3a3a3a;
+}
+
+/* SIDE BY SIDE IMAGES */
+.img-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.img-pair figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.img-pair figure figcaption {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+/* IMAGE BLOCK */
+.img-block { margin: 2rem 0; }
+
+.img-block .placeholder {
+  width: 100%;
+  background: var(--offwhite);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px dashed rgba(206,162,115,0.5);
+}
+
+.img-block figcaption {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.6rem;
+  text-align: center;
+}
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  padding: 2rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+.footer-right {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .hero { padding: 6rem 1.5rem 3rem; }
+  .body { padding: 3rem 1.5rem 5rem; }
+  .meta { gap: 1.5rem; }
+  .img-pair { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-name">Jazzmyne Miller</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li class="nav-dropdown">
+      <a href="work.html" class="nav-dropdown-toggle">
+        Work
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <div class="nav-dropdown-menu">
+        <a href="case-study-1.html" class="nav-dropdown-item">Home Screen Mental Models</a>
+        <a href="case-study-2.html" class="nav-dropdown-item">RTC Tracking Survey</a>
+        <a href="case-study-3.html" class="nav-dropdown-item active">Evaluating a New Competitive Feature</a>
+        <a href="case-study-4.html" class="nav-dropdown-item">Unlocking Customer Segments</a>
+        <a href="data-projects.html" class="nav-dropdown-item">Other Data Analysis Projects</a>
+      </div>
+    </li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="tag">Case Study · Survey Research</div>
+    <h1 class="cs-title">Evaluating a New Competitive Feature</h1>
+    <p class="lede">Understanding player reactions to a proposed change to an existing competitive feature.</p>
+    <div class="meta">
+      <div class="meta-item"><strong>Company</strong><span>PeopleFun</span></div>
+      <div class="meta-item"><strong>Product</strong><span>Wordscapes</span></div>
+      <div class="meta-item"><strong>Method</strong><span>In-Game Survey</span></div>
+      <div class="meta-item"><strong>My Role</strong><span>Senior User Researcher</span></div>
+      <div class="meta-item"><strong>Participants</strong><span>3,100 Players</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <h2>Background</h2>
+  <p>Wordscapes is a casual mobile word puzzle game developed by PeopleFun. Players connect letters to form words and complete crossword-style puzzles set against scenic landscape backgrounds. With more than 10 million players and a 22% share of the global word games market, it is one of the most widely played games in its category. As of 2026, the game averages approximately 2 million daily active players.</p>
+  <p>Wordscapes currently has two types of tournaments players can participate in: the Star Tournament and the Team Tournament. The Team Tournament takes place on weekends, while Star Tournaments run during the week and on weekends.</p>
+  <p>In both formats, players:</p>
+  <ul>
+    <li>Earn stars by completing levels during a set time window</li>
+    <li>Compete against other players or teams on a leaderboard</li>
+    <li>Receive rewards based on their final leaderboard rank</li>
+  </ul>
+  <p>The Star Tournament currently runs in two versions: a weekday Solo Tournament and a weekend version often referred to as the Crowns Tournament.</p>
+
+  <div class="img-pair">
+    <figure>
+      <img src="star_tournament.png" alt="Star Tournament leaderboard" />
+      <figcaption>Star Tournament</figcaption>
+    </figure>
+    <figure>
+      <img src="team_tournament.png" alt="Team Tournament leaderboard" />
+      <figcaption>Team Tournament</figcaption>
+    </figure>
+  </div>
+
+  <h2>Challenge</h2>
+  <p>The team wanted to introduce a new week-long tournament structure to replace the current weekday and weekend Solo Tournament format. This new structure would replace the current Star Tournament with one based on Brilliance points earned in the game. The new tournament would use a league format where players would be promoted or demoted based on how much Brilliance they earn each week.</p>
+
+  <h2>Problem</h2>
+  <p>We had limited understanding of how players felt about the current solo tournament structure or their interest in an alternative competitive format. Before moving forward with the League format, we needed to understand what players actually valued in the current tournament system and whether the proposed tournament concept would be appealing and motivating to players.</p>
+
+  <h2>My Role</h2>
+  <p>I designed and programmed the in-game survey in Alchemer and coordinated with Engineering, Production, Product Management, and QA to launch it to players in the game. Working with Product Management, I deployed the survey through the A/B testing tool using a phased rollout to prevent overexposure and oversampling.</p>
+
+  <h2>Process</h2>
+  <p>I surveyed N=3,100 Wordscapes players using the in-game announcement tool about their tournament participation, motivations for competing, and how they felt about the proposed tournament concept. Players were shown mockups and introductory tutorial language for the proposed tournament format and asked to evaluate its appeal, comprehension, and motivation to compete.</p>
+
+  <h2>What We Learned</h2>
+  <p>Players highly valued the current weekend tournaments (Solo and Team). However, 66% of players did not understand the proposed tournament structure when it was presented, revealing a mismatch between the new system and players' existing mental models. About half of players also said that longer tournament cycles would decrease their participation in tournaments.</p>
+
+  <div class="img-block">
+    <figure>
+      <div class="placeholder" style="height: 300px;">[ Image Placeholder — Coming Soon ]</div>
+      <figcaption>Key findings from the survey</figcaption>
+    </figure>
+  </div>
+
+  <h2>Impact</h2>
+  <p>Based on these findings, I recommended preserving the existing weekend tournament cadence, introducing a dedicated first-time onboarding flow to explain "Brilliance," and making the new leagues opt-in to reduce perceived competitive pressure. UX and Design incorporated these recommendations into the tournament design and player education materials.</p>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Jazzmyne Miller</div>
+  <div class="footer-right">© 2025</div>
+</footer>
+
+</body>
+</html>
