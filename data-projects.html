@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unlocking Customer Segments — Jazzmyne Miller</title>
+<title>Other Data Analysis Projects — Jazzmyne Miller</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
@@ -12,10 +12,8 @@
 :root {
   --white:    #F5F5F0;
   --offwhite: #EFEFEA;
-  --silver:   #E0E0DA;
   --gold:     #FCA311;
   --navy:     #14213D;
-  --navy-soft:#2a3a5c;
   --ink:      #111114;
   --muted:    #6B6B76;
   --rule:     rgba(0,0,0,0.08);
@@ -141,6 +139,86 @@ nav {
 .nav-dropdown-item:last-child { border-bottom: none; }
 .nav-dropdown-item:hover { background: var(--offwhite); }
 
+/* MOBILE NAV */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  background: rgba(245,245,240,0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem;
+  z-index: 99;
+  flex-direction: column;
+  gap: 0;
+}
+
+.nav-mobile-menu.open { display: flex; }
+
+.nav-mobile-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+
+.nav-mobile-link:last-child { border-bottom: none; }
+
+.nav-mobile-section {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0.9rem 0 0.4rem;
+}
+
+.nav-mobile-sub {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.6rem 0 0.6rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+
+.nav-mobile-sub:last-child { border-bottom: none; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
 /* HERO */
 .hero {
   background: var(--navy);
@@ -172,7 +250,7 @@ nav {
   background: var(--gold);
 }
 
-.cs-title {
+.page-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
@@ -182,103 +260,75 @@ nav {
   margin-bottom: 1.25rem;
 }
 
-.lede {
+.page-lede {
   font-size: 1.05rem;
   font-weight: 300;
   color: rgba(245,245,240,0.65);
   line-height: 1.75;
   max-width: 55ch;
-  margin-bottom: 2.5rem;
 }
 
-.meta {
-  display: flex;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.meta-item strong {
-  display: block;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.25rem;
-}
-
-.meta-item span {
-  font-size: 0.88rem;
-  color: rgba(245,245,240,0.75);
-}
-
-/* BODY */
-.body {
+/* COMING SOON */
+.coming-soon {
   max-width: 780px;
   margin: 0 auto;
-  padding: 4rem 3.5rem 7rem;
+  padding: 7rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
 }
 
-.body h2 {
+.coming-soon-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.coming-soon-title {
   font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--navy);
-  margin-bottom: 1rem;
-  margin-top: 3rem;
+  letter-spacing: -0.02em;
 }
 
-.body h2:first-child { margin-top: 0; }
-
-.body p {
-  font-size: 1rem;
-  line-height: 1.9;
-  color: #3a3a3a;
-  margin-bottom: 1.25rem;
+.coming-soon-rule {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.body p:last-child { margin-bottom: 0; }
-.body p strong { color: var(--navy); font-weight: 600; }
+.coming-soon-rule-line { width: 40px; height: 1px; background: var(--gold); }
+.coming-soon-rule-diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
 
-/* IMAGE BLOCK */
-.img-block { margin: 2rem 0; }
-
-.img-block img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.img-block figcaption {
-  font-size: 0.75rem;
+.coming-soon-text {
+  font-size: 0.95rem;
+  font-weight: 300;
   color: var(--muted);
-  font-style: italic;
-  margin-top: 0.6rem;
-  text-align: center;
+  line-height: 1.8;
+  max-width: 45ch;
 }
 
-/* SIDE BY SIDE IMAGES */
-.img-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin: 2rem 0;
+.coming-soon-cta {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 2px solid var(--navy);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.img-pair figure img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.img-pair figure figcaption {
-  font-size: 0.75rem;
-  color: var(--muted);
-  font-style: italic;
-  margin-top: 0.6rem;
-  text-align: center;
+.coming-soon-cta:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
 }
 
 /* FOOTER */
@@ -306,86 +356,11 @@ footer {
   color: rgba(255,255,255,0.3);
 }
 
-/* RESPONSIVE */
 @media (max-width: 960px) {
   nav { padding: 1rem 1.5rem; }
-  .nav-links { gap: 1.5rem; }
   .hero { padding: 6rem 1.5rem 3rem; }
-  .body { padding: 3rem 1.5rem 5rem; }
-  .meta { gap: 1.5rem; }
-  .img-pair { grid-template-columns: 1fr; }
+  .coming-soon { padding: 5rem 1.5rem; }
   footer { flex-direction: column; text-align: center; }
-}
-
-
-/* MOBILE NAV */
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  padding: 4px;
-  background: none;
-  border: none;
-}
-.nav-hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--navy);
-  border-radius: 2px;
-  transition: all 0.3s;
-}
-.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.nav-mobile-menu {
-  display: none;
-  position: fixed;
-  top: 64px;
-  left: 0; right: 0;
-  background: rgba(245,245,240,0.98);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--rule);
-  padding: 1.5rem;
-  z-index: 99;
-  flex-direction: column;
-  gap: 0;
-}
-.nav-mobile-menu.open { display: flex; }
-.nav-mobile-link {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--navy);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--rule);
-  display: block;
-}
-.nav-mobile-link:last-child { border-bottom: none; }
-.nav-mobile-section {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding: 0.9rem 0 0.4rem;
-}
-.nav-mobile-sub {
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: var(--muted);
-  text-decoration: none;
-  padding: 0.6rem 0 0.6rem 1rem;
-  border-bottom: 1px solid var(--rule);
-  display: block;
-}
-.nav-mobile-sub:last-child { border-bottom: none; }
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
 }
 
 
@@ -416,18 +391,18 @@ footer {
         <a href="case-study-1.html" class="nav-dropdown-item">Home Screen Mental Models</a>
         <a href="case-study-2.html" class="nav-dropdown-item">Benchmarking Video Calling Use</a>
         <a href="case-study-3.html" class="nav-dropdown-item">Evaluating a New Competitive Feature</a>
-        <a href="case-study-4.html" class="nav-dropdown-item active">Unlocking Customer Segments</a>
-        <a href="data-projects.html" class="nav-dropdown-item">Other Data Analysis Projects</a>
+        <a href="case-study-4.html" class="nav-dropdown-item">Unlocking Customer Segments</a>
+        <a href="data-projects.html" class="nav-dropdown-item active">Other Data Analysis Projects</a>
       </div>
     </li>
     <li><a href="resume.html">Resume</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
 <!-- MOBILE MENU -->
 <div class="nav-mobile-menu" id="mobile-menu">
   <a href="about.html" class="nav-mobile-link">About</a>
@@ -437,7 +412,7 @@ footer {
   <a href="case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>
   <a href="case-study-3.html" class="nav-mobile-sub">Evaluating a New Competitive Feature</a>
   <a href="case-study-4.html" class="nav-mobile-sub">Unlocking Customer Segments</a>
-  <a href="data-projects.html" class="nav-mobile-sub">Other Data Analysis Projects</a>
+  <a href="data-projects.html" class="nav-mobile-sub active">Other Data Analysis Projects</a>
   <a href="resume.html" class="nav-mobile-link">Resume</a>
   <a href="contact.html" class="nav-mobile-link">Contact</a>
 </div>
@@ -445,64 +420,20 @@ footer {
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="tag">Case Study · Quantitative Research · Segmentation</div>
-    <h1 class="cs-title">Unlocking Customer Segments</h1>
-    <p class="lede">Identifying prime consumer segments through psychographic profiling and predictive modeling.</p>
-    <div class="meta">
-      <div class="meta-item"><strong>Company</strong><span>Mintel</span></div>
-      <div class="meta-item"><strong>Method</strong><span>Survey Research · Segmentation</span></div>
-      <div class="meta-item"><strong>My Role</strong><span>Research and Data Analyst</span></div>
-      <div class="meta-item"><strong>Participants</strong><span>2,000 Respondents</span></div>
-    </div>
+    <div class="tag">Other Projects</div>
+    <h1 class="page-title">Other Data Analysis Projects</h1>
   </div>
 </div>
 
-<!-- BODY -->
-<div class="body">
-
-  <h2>Background</h2>
-  <p>Mintel is a leading market research provider that publishes syndicated consumer research reports across a wide range of industries and markets. These reports analyze consumer attitudes, behaviors, and market trends to help companies understand their customers and identify opportunities for growth.</p>
-  <p>Mintel publishes research across many categories including food and drink, beauty and personal care, retail, financial services, technology, automotive, and multicultural consumer markets.</p>
-
-  <h2>Challenge</h2>
-  <p>Sales in a specific CPG category dropped by over 50% as consumers increasingly rejected mainstay products. CPG clients needed a way to identify which consumers were still most likely to buy in the category and how to market to them as preferences continued to change.</p>
-
-  <h2>Problem</h2>
-  <p>Our existing research did not identify which consumers were most likely to buy in the category or clearly define those segments. We needed a way to consistently identify prime consumer segments and understand the motivations behind their behavior.</p>
-
-  <h2>My Role</h2>
-  <p>I designed the survey, managed the five-week fieldwork timeline, cleaned and prepared the dataset, and conducted the statistical analysis. I worked with the category analyst to develop the questionnaire and with the programmer to program the survey.</p>
-
-  <h2>Process</h2>
-  <p>I designed and fielded a 15-minute survey featuring 24 psychographic and behavioral statements with a nationally representative sample of 2,000 U.S. adults (18+). I used factor analysis to identify core themes such as Health Conscious, Innovative, and Conscientiousness. I then applied k-means cluster analysis to group respondents into segments. Working with the Category Analyst, we finalized the consumer segments and used discriminant analysis to identify the statements that best predicted each group. The survey and discriminant scoring were then used in future surveys so the segments could be recreated across reports.</p>
-
-  <div class="img-block">
-    <figure>
-      <img src="factor_analysis_results.png" alt="Factor Analysis Results showing Rotated Component Matrix" />
-      <figcaption>Factor Analysis Results — Rotated Component Matrix identifying core psychographic themes</figcaption>
-    </figure>
+<!-- COMING SOON -->
+<div class="coming-soon">
+  <div class="coming-soon-rule">
+    <div class="coming-soon-rule-line"></div>
+    <div class="coming-soon-rule-diamond"></div>
+    <div class="coming-soon-rule-line"></div>
   </div>
-
-  <h2>What We Learned</h2>
-  <p>Working with the Category Analyst, we developed seven consumer segments or personas (four women and three men) that represented the consumers in this category. Using these segments, we identified which consumers were more likely to reject traditional products and lean toward newer, more innovative products.</p>
-
-  <div class="img-block">
-    <figure>
-      <img src="female_consumer_segments.png" alt="Female Consumer Segment Profiles" />
-      <figcaption>Female Consumer Segment Profiles</figcaption>
-    </figure>
-  </div>
-
-  <div class="img-block">
-    <figure>
-      <img src="male_consumer_segments.png" alt="Male Consumer Segment Profiles" />
-      <figcaption>Male Consumer Segment Profiles</figcaption>
-    </figure>
-  </div>
-
-  <h2>Impact</h2>
-  <p>Key psychographic statements from the survey were included in future surveys for these reports across categories so the consumer segments could be recreated over time. This allowed the Category Analyst and other internal teams to use consistent segments across reports, track changes in the category, and identify the consumer groups most likely to drive growth. It also helped internal and external clients focus their marketing on the demographics most likely to adopt newer products in the category.</p>
-
+  <h2 class="coming-soon-title">Coming Soon</h2>
+  <a href="work.html" class="coming-soon-cta">← Back to Work</a>
 </div>
 
 <!-- FOOTER -->
@@ -510,7 +441,6 @@ footer {
   <div class="footer-name">Jazzmyne Miller</div>
   <div class="footer-right">© 2026</div>
 </footer>
-
 
 <script>
   function toggleMenu() {

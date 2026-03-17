@@ -109,7 +109,7 @@ nav {
 
 .nav-dropdown-menu {
   position: absolute;
-  top: calc(100% + 1rem);
+  top: calc(100% + 0.25rem);
   right: 0;
   background: var(--white);
   border: 1px solid var(--rule);
@@ -125,6 +125,15 @@ nav {
   opacity: 1;
   pointer-events: all;
   transform: translateY(0);
+}
+
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
 }
 
 .nav-dropdown-item {
@@ -874,6 +883,14 @@ footer {
   .nav-links { gap: 1rem; }
 }
 
+
+/* TOUCH FRIENDLY DROPDOWN */
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
 </style>
 </head>
 <body>
@@ -1147,6 +1164,26 @@ footer {
       document.getElementById('hamburger').classList.remove('open');
     });
   });
+
+  // Touch-friendly dropdown
+  document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      const dropdown = this.closest('.nav-dropdown');
+      const isOpen = dropdown.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+      if (!isOpen) {
+        dropdown.classList.add('open');
+        e.preventDefault();
+      }
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) {
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+    }
+  });
+
 </script>
 
 </body>
