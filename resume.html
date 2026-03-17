@@ -598,7 +598,7 @@ footer {
   <!-- CONTACT -->
   <div class="resume-name-block">
     <div class="resume-contact">
-      <a href="/cdn-cgi/l/email-protection#d0babebdb9bcbcb5a2bdb190b7bdb1b9bcfeb3bfbd" style="color:var(--navy);font-weight:600;">Email</a> &nbsp;·&nbsp;
+      <a href="mailto:jnmillerma@gmail.com" style="color:var(--navy);font-weight:600;">Email</a> &nbsp;·&nbsp;
       <a href="https://www.linkedin.com/in/jnmillerma" target="_blank" style="color:var(--navy);font-weight:600;">LinkedIn</a>
     </div>
   </div>
@@ -736,7 +736,19 @@ footer {
   <div class="footer-right">© 2026</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
-    const hamburger = document.getElementById('ham
+    const hamburger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-mobile-link, .nav-mobile-sub').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>

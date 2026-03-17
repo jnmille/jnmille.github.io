@@ -187,12 +187,12 @@ nav {
 .hero-name {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: clamp(3rem, 7vw, 6rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--navy);
   margin-bottom: 1rem;
-  animation: fadeUp 0.7s 0.1s ease both;
+  animation: fadeUp 0.7s 0.2s ease both;
 }
 
 .hero-title {
@@ -281,30 +281,20 @@ nav {
 /* HERO PHOTO */
 .hero-photo-wrap {
   position: relative;
-  width: 160px;
-  height: 160px;
-  margin: 0 auto 2rem;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto 2.5rem;
   animation: fadeUp 0.7s 0.1s ease both;
 }
 
 .hero-photo {
-  width: 160px;
-  height: 160px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 30%;
   display: block;
-  position: relative;
-  z-index: 1;
   border: 4px solid var(--gold);
-}
-
-.hero-photo-ring {
-  position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  border: 2px solid rgba(252,163,17,0.3);
-  z-index: 0;
 }
 
 
@@ -952,8 +942,7 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <div class="hero-photo-wrap">
-    <div class="hero-photo-ring"></div>
-    <img src="JM10.jpg" alt="Jazzmyne Miller" class="hero-photo" />
+    <img src="jazzmyne_outdoor.jpg" alt="Jazzmyne Miller" class="hero-photo" />
   </div>
   <h1 class="hero-name">Jazzmyne Miller</h1>
   <p class="hero-title">Senior User Researcher</p>
@@ -1133,7 +1122,7 @@ footer {
     <h2 class="contact-heading">Let's Work Together</h2>
     <p class="contact-sub">Open to senior individual contributor roles and freelance consulting opportunities where research has a real seat at the table.</p>
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#f69c989b9f9a9a93849b97b6919b979f9ad895999b" class="contact-link contact-link-primary">
+      <a href="mailto:jnmillerma@gmail.com" class="contact-link contact-link-primary">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.3"/></svg>
         Email Me
       </a>
