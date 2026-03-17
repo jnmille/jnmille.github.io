@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Jazzmyne Miller</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white:    #F5F5F0;
+  --offwhite: #EFEFEA;
+  --silver:   #E0E0DA;
+  --gold:     #FCA311;
+  --gold-dim: rgba(252,163,17,0.1);
+  --gold-mid: rgba(252,163,17,0.3);
+  --navy:     #14213D;
+  --navy-soft:#2a3a5c;
+  --ink:      #111114;
+  --muted:    #6B6B76;
+  --rule:     rgba(0,0,0,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.25rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(245,245,240,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #6B6B76;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--navy); }
+.nav-links a.active { color: var(--gold); }
+
+.nav-dropdown { position: relative; }
+
+.nav-dropdown-toggle {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #6B6B76;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+}
+
+.nav-dropdown-toggle:hover { color: var(--navy); }
+.nav-dropdown-toggle svg { transition: transform 0.2s; }
+.nav-dropdown:hover .nav-dropdown-toggle svg { transform: rotate(180deg); }
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  min-width: 280px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.15s;
+}
+
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: var(--offwhite); }
+
+/* HERO */
+.about-hero {
+  padding: 9rem 3.5rem 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* PAGE LABEL */
+.page-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.page-label::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* PHOTO */
+.photo-wrap {
+  position: sticky;
+  top: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.photo-circle {
+  width: 260px;
+  height: 340px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 3px solid var(--gold);
+  box-shadow: 0 8px 32px rgba(252,163,17,0.2);
+}
+
+.photo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.photo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.photo-title {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+.photo-rule {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* BIO */
+.bio-content {
+  padding-top: 1rem;
+}
+
+.bio-greeting {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--navy);
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.bio-text {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.bio-text strong {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.bio-location {
+  color: var(--muted);
+  font-weight: 300;
+  font-size: 0.95rem;
+}
+
+/* EDUCATION */
+.education-block {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: var(--offwhite);
+  border-left: 3px solid var(--gold);
+  width: 100%;
+  text-align: left;
+}
+
+.education-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+.education-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 1.25rem;
+}
+
+.education-item:last-child { margin-bottom: 0; }
+
+.education-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+}
+
+.education-school {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* HOBBIES */
+.hobbies-block {
+  margin-top: 2.5rem;
+}
+
+.hobbies-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+.hobbies-intro {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #444;
+  margin-bottom: 1.25rem;
+}
+
+.hobbies-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.hobbies-list li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.hobbies-closing {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.hobbies-sign {
+  font-family: 'Instrument Sans', sans-serif;
+  font-style: normal;
+  font-size: 1.05rem;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+/* QUOTE SECTION */
+.quote-section {
+  background: var(--navy);
+  padding: 5rem 3.5rem;
+  text-align: center;
+}
+
+.quote-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  line-height: 0.5;
+  color: var(--gold);
+  opacity: 0.4;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.quote-attribution {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  padding: 2rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+.footer-right {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .about-hero {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 7rem 1.5rem 4rem;
+  }
+  .photo-wrap { position: static; }
+  .quote-section { padding: 4rem 1.5rem; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+
+/* MOBILE NAV */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  background: rgba(245,245,240,0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem;
+  z-index: 99;
+  flex-direction: column;
+  gap: 0;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+.nav-mobile-link:last-child { border-bottom: none; }
+.nav-mobile-section {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0.9rem 0 0.4rem;
+}
+.nav-mobile-sub {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.6rem 0 0.6rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+.nav-mobile-sub:last-child { border-bottom: none; }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-name">Jazzmyne Miller</a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li class="nav-dropdown">
+      <a href="work.html" class="nav-dropdown-toggle">
+        Work
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <div class="nav-dropdown-menu">
+        <a href="case-study-1.html" class="nav-dropdown-item">Home Screen Mental Models</a>
+        <a href="case-study-2.html" class="nav-dropdown-item">Benchmarking Video Calling Use</a>
+        <a href="case-study-3.html" class="nav-dropdown-item">Evaluating a New Competitive Feature</a>
+        <a href="case-study-4.html" class="nav-dropdown-item">Unlocking Customer Segments</a>
+        <a href="data-projects.html" class="nav-dropdown-item">Other Data Analysis Projects</a>
+      </div>
+    </li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="about.html" class="nav-mobile-link">About</a>
+  <div class="nav-mobile-section">Work</div>
+  <a href="work.html" class="nav-mobile-sub">All Projects</a>
+  <a href="case-study-1.html" class="nav-mobile-sub">Home Screen Mental Models</a>
+  <a href="case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>
+  <a href="case-study-3.html" class="nav-mobile-sub">Evaluating a New Competitive Feature</a>
+  <a href="case-study-4.html" class="nav-mobile-sub">Unlocking Customer Segments</a>
+  <a href="data-projects.html" class="nav-mobile-sub">Other Data Analysis Projects</a>
+  <a href="resume.html" class="nav-mobile-link">Resume</a>
+  <a href="contact.html" class="nav-mobile-link">Contact</a>
+</div>
+
+<!-- ABOUT HERO -->
+<div class="about-hero">
+
+  <!-- PHOTO COLUMN -->
+  <div class="photo-wrap reveal">
+    <p class="page-label">About</p>
+    <div class="photo-circle">
+      <img src="jazzmyne_outdoor.jpg" alt="Jazzmyne Miller"/>
+    </div>
+    <div class="photo-rule"></div>
+    <p class="photo-name">Jazzmyne Miller</p>
+    <p class="photo-title">Senior User Researcher</p>
+
+    <!-- EDUCATION -->
+    <div class="education-block">
+      <div class="education-label">Education</div>
+      <div class="education-item">
+        <span class="education-degree">Master of Arts in Sociology</span>
+        <span class="education-school">DePaul University — Chicago, IL</span>
+      </div>
+      <div class="education-item">
+        <span class="education-degree">Bachelor of Science in Sociology & Political Science</span>
+        <span class="education-school">Illinois State University — Normal, IL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIO COLUMN -->
+  <div class="bio-content reveal">
+    <h1 class="bio-greeting">Hi! I'm Jazzmyne! 👋</h1>
+
+    <p class="bio-text">I'm a <strong>mixed methods researcher</strong> specializing in <strong>survey design</strong> and <strong>quantitative analysis</strong>. <span class="bio-location">I was born and raised in Chicago, IL and am currently based in Seattle, WA.</span></p>
+
+    <p class="bio-text">My path into research started with <strong>data</strong>. Before becoming a researcher in graduate school, I discovered that I genuinely enjoyed collecting, cleaning, manipulating, and exploring data. I liked digging into <strong>large datasets</strong> and trying to make sense of <strong>complex information</strong>.</p>
+
+    <p class="bio-text">I originally got my start in <strong>market research</strong> as a Jr. Statistician, where I developed a strong foundation in <strong>statistical analysis</strong>, <strong>survey design</strong>, and <strong>sampling</strong>. It was there that I began learning not only what people liked, but what new products they might want and how they actually use the products they already have.</p>
+
+    <p class="bio-text">Eventually my curiosity led me to transition into <strong>UX research</strong>, where I could connect data with real user experiences and better understand how people interact with <strong>mobile products</strong>.</p>
+
+    <p class="bio-text">I've always been curious about why people like the products they use, what new products they want, and <strong>how they make decisions</strong>. Early in my career, I realized I enjoy digging into complex questions and <strong>uncovering patterns in the data</strong>.</p>
+
+    <p class="bio-text">Throughout my career, I've researched a wide range of topics, from <strong>finance</strong> and <strong>auto</strong> to <strong>social media</strong>, <strong>communication</strong>, and <strong>mobile games</strong>.</p>
+
+    <!-- HOBBIES -->
+    <div class="hobbies-block">
+      <p class="hobbies-intro">When I'm not conducting interviews or analyzing data, you can usually find me:</p>
+      <ul class="hobbies-list">
+        <li>Watching Star Trek episodes 🖖</li>
+        <li>Learning chess on Duolingo ♟️</li>
+        <li>Completing puzzles 🧩</li>
+        <li>Trying new recipes and cuisines 🍲</li>
+      </ul>
+      <p class="hobbies-closing">Many of these hobbies reflect the same curiosity and strategic thinking that I bring to research, especially the challenge of connecting pieces and making sense of complex problems.</p>
+      <p class="hobbies-sign">Live Long and Prosper 🖖</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Jazzmyne Miller</div>
+  <div class="footer-right">© 2026</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-mobile-link, .nav-mobile-sub').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
