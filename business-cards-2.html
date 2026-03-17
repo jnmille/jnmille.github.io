@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Card Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: #d0d0cc;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+}
+
+.concept { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+
+.label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #FCA311;
+}
+
+/* 3.5" x 2" at 150dpi = 525 x 300px */
+.card {
+  width: 525px;
+  height: 300px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+}
+
+/* ── STYLE 1: NAVY ── */
+.navy {
+  background: #14213D;
+  display: flex;
+  align-items: stretch;
+}
+
+.navy-left {
+  flex: 1;
+  padding: 36px 36px 36px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navy-right {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-left: 1px solid rgba(252,163,17,0.2);
+  padding: 16px;
+}
+
+.navy .qr-row { display: flex; gap: 10px; }
+.navy .qr-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+
+.navy .gold-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: #FCA311;
+}
+
+.navy .name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #F5F5F0;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.navy .title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #FCA311;
+  margin-top: 8px;
+}
+
+.navy .contact-block { display: flex; flex-direction: column; gap: 7px; }
+
+.navy .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: rgba(245,245,240,0.7);
+}
+
+.navy .tagline {
+  font-size: 13px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(245,245,240,0.65);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.navy .contact-item svg { flex-shrink: 0; opacity: 0.8; }
+
+.navy .qr-box {
+  width: 90px;
+  height: 90px;
+  background: #F5F5F0;
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navy .qr-box canvas,
+.navy .qr-box img { width: 78px !important; height: 78px !important; }
+
+.navy .qr-label {
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245,245,240,0.35);
+}
+
+/* ── STYLE 2: LIGHT ── */
+.light {
+  background: #F5F5F0;
+  display: flex;
+  align-items: stretch;
+}
+
+.light-left {
+  flex: 1;
+  padding: 36px 32px 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.light-right {
+  width: 160px;
+  background: #14213D;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+}
+
+.light .qr-row { display: flex; gap: 10px; }
+.light .qr-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+
+.light .gold-bar {
+  position: absolute;
+  right: 160px; top: 0; bottom: 0;
+  width: 4px;
+  background: #FCA311;
+}
+
+.light .name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #14213D;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.light .title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #FCA311;
+  margin-top: 8px;
+}
+
+.light .contact-block { display: flex; flex-direction: column; gap: 7px; }
+
+.light .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: #6B6B76;
+}
+
+.light .tagline {
+  font-size: 13px;
+  font-weight: 300;
+  font-style: italic;
+  color: #6B6B76;
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.light .contact-item svg { flex-shrink: 0; }
+
+.light .qr-box {
+  width: 90px;
+  height: 90px;
+  background: #F5F5F0;
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.light .qr-box canvas,
+.light .qr-box img { width: 78px !important; height: 78px !important; }
+
+.light .qr-label {
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245,245,240,0.5);
+}
+</style>
+</head>
+<body>
+
+<!-- STYLE 1: NAVY -->
+<div class="concept">
+  <div class="label">Style 1 — Navy</div>
+  <div class="card navy">
+    <div class="gold-bar"></div>
+    <div class="navy-left">
+      <div>
+        <div class="name">Jazzmyne Miller</div>
+        <div class="title">UX Researcher &amp; Strategist</div>
+        <div class="tagline">Helping you understand what users want, feel and do</div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FCA311" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          jnmillerma&#64;gmail.com
+        </div>
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FCA311" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (773) 373-9593
+        </div>
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FCA311" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/jnmillerma
+        </div>
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FCA311" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          jnmille.github.io
+        </div>
+      </div>
+    </div>
+    <div class="navy-right">
+      <div class="qr-item"><div class="qr-box" id="qr1"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STYLE 2: LIGHT -->
+<div class="concept">
+  <div class="label">Style 2 — Light</div>
+  <div class="card light">
+    <div class="gold-bar"></div>
+    <div class="light-left">
+      <div>
+        <div class="name">Jazzmyne Miller</div>
+        <div class="title">UX Researcher &amp; Strategist</div>
+        <div class="tagline">Helping you understand what users want, feel and do</div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FCA311" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          jnmillerma&#64;gmail.com
+        </div>
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FCA311" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (773) 373-9593
+        </div>
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FCA311" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/jnmillerma
+        </div>
+        <div class="contact-item">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FCA311" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
+          jnmille.github.io
+        </div>
+      </div>
+    </div>
+    <div class="light-right">
+      <div class="qr-item"><div class="qr-box" id="qr2"></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  new QRCode(document.getElementById('qr1'), {
+    text: 'https://jnmille.github.io',
+    width: 78, height: 78,
+    colorDark: '#14213D',
+    colorLight: '#F5F5F0',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+  new QRCode(document.getElementById('qr2'), {
+    text: 'https://jnmille.github.io',
+    width: 78, height: 78,
+    colorDark: '#14213D',
+    colorLight: '#F5F5F0',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+</body>
+</html>
