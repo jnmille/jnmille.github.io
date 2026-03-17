@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home Screen Mental Models — Jazzmyne Miller</title>
+<title>RTC Tracking Survey — Jazzmyne Miller</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
@@ -12,10 +12,8 @@
 :root {
   --white:    #F5F5F0;
   --offwhite: #EFEFEA;
-  --silver:   #E0E0DA;
   --gold:     #FCA311;
   --navy:     #14213D;
-  --navy-soft:#2a3a5c;
   --ink:      #111114;
   --muted:    #6B6B76;
   --rule:     rgba(0,0,0,0.08);
@@ -28,88 +26,6 @@ body {
   background: var(--white);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
-}
-
-/* PASSWORD GATE */
-#password-gate {
-  position: fixed;
-  inset: 0;
-  background: var(--navy);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 2rem;
-}
-
-.gate-lock { font-size: 2.5rem; margin-bottom: 0.5rem; }
-
-.gate-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--white);
-  text-align: center;
-  letter-spacing: -0.01em;
-}
-
-.gate-sub {
-  font-size: 0.9rem;
-  color: rgba(245,245,240,0.55);
-  text-align: center;
-  max-width: 32ch;
-  line-height: 1.6;
-}
-
-.gate-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  width: 100%;
-  max-width: 320px;
-}
-
-.gate-input {
-  width: 100%;
-  padding: 0.85rem 1.25rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: var(--white);
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 0.95rem;
-  outline: none;
-  text-align: center;
-  letter-spacing: 0.1em;
-  transition: border-color 0.2s;
-}
-
-.gate-input::placeholder { color: rgba(255,255,255,0.3); }
-.gate-input:focus { border-color: var(--gold); }
-
-.gate-btn {
-  width: 100%;
-  padding: 0.85rem;
-  background: var(--gold);
-  color: var(--navy);
-  border: none;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.gate-btn:hover { background: #e8940f; }
-
-.gate-error {
-  font-size: 0.8rem;
-  color: #ff6b6b;
-  display: none;
 }
 
 /* NAV */
@@ -225,23 +141,6 @@ nav {
   margin: 0 auto;
 }
 
-.back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  text-decoration: none;
-  margin-bottom: 2rem;
-  opacity: 0.8;
-  transition: opacity 0.2s;
-}
-
-.back:hover { opacity: 1; }
-
 .tag {
   font-size: 0.72rem;
   font-weight: 600;
@@ -304,28 +203,6 @@ nav {
   color: rgba(245,245,240,0.75);
 }
 
-/* HERO IMAGE */
-.hero-image {
-  width: 100%;
-  height: 400px;
-  background: var(--offwhite);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border: 1px dashed rgba(206,162,115,0.4);
-}
-
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 /* BODY */
 .body {
   max-width: 780px;
@@ -354,11 +231,11 @@ nav {
 .body p:last-child { margin-bottom: 0; }
 .body p strong { color: var(--navy); font-weight: 600; }
 
-/* FLOAT IMAGE - newspaper style */
+/* FLOAT IMAGE */
 .img-float-right {
   float: right;
   margin: 0 0 1.5rem 2.5rem;
-  max-width: 280px;
+  max-width: 340px;
 }
 
 .img-float-right img {
@@ -381,7 +258,50 @@ nav {
   clear: both;
 }
 
-/* IMAGE BLOCKS */
+/* SURVEY QUESTIONS CARD */
+.survey-card {
+  background: var(--offwhite);
+  border-left: 3px solid var(--gold);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+}
+
+.survey-card-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.survey-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.survey-card ul li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #3a3a3a;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.survey-card ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* IMAGE BLOCK */
 .img-block { margin: 2rem 0; }
 
 .img-block .placeholder {
@@ -440,6 +360,7 @@ footer {
   .hero { padding: 6rem 1.5rem 3rem; }
   .body { padding: 3rem 1.5rem 5rem; }
   .meta { gap: 1.5rem; }
+  .img-float-right { float: none; max-width: 100%; margin: 1.5rem 0; }
   footer { flex-direction: column; text-align: center; }
 }
 
@@ -518,20 +439,6 @@ footer {
 </head>
 <body>
 
-<!-- PASSWORD GATE DISABLED -->
-<!--
-<div id="password-gate">
-  <div class="gate-lock">🔒</div>
-  <p class="gate-title">This case study is password protected</p>
-  <p class="gate-sub">Please enter the password to view this project.</p>
-  <div class="gate-form">
-    <input type="password" class="gate-input" id="gate-input" placeholder="Enter password" />
-    <button class="gate-btn" onclick="checkPassword()">View Case Study</button>
-    <p class="gate-error" id="gate-error">Incorrect password. Please try again.</p>
-  </div>
-</div>
--->
-
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-name">Jazzmyne Miller</a>
@@ -545,8 +452,8 @@ footer {
         </svg>
       </a>
       <div class="nav-dropdown-menu">
-        <a href="case-study-1.html" class="nav-dropdown-item active">Home Screen Mental Models</a>
-        <a href="case-study-2.html" class="nav-dropdown-item">Benchmarking Video Calling Use</a>
+        <a href="case-study-1.html" class="nav-dropdown-item">Home Screen Mental Models</a>
+        <a href="case-study-2.html" class="nav-dropdown-item active">RTC Tracking Survey</a>
         <a href="case-study-3.html" class="nav-dropdown-item">Evaluating a New Competitive Feature</a>
         <a href="case-study-4.html" class="nav-dropdown-item">Unlocking Customer Segments</a>
         <a href="data-projects.html" class="nav-dropdown-item">Other Data Analysis Projects</a>
@@ -577,15 +484,15 @@ footer {
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="tag">Case Study · Qualitative Research</div>
-    <h1 class="cs-title">Home Screen Mental Models</h1>
-    <p class="lede">Understanding how players navigate and mentally organize the Wordscapes interface to inform a major UI redesign.</p>
+    <div class="tag">Case Study</div>
+    <h1 class="cs-title">Benchmarking Video Calling Use</h1>
+    <p class="lede">Measuring awareness, usage, and sentiment toward voice and video calling across a global landscape.</p>
     <div class="meta">
-      <div class="meta-item"><strong>Company</strong><span>PeopleFun</span></div>
-      <div class="meta-item"><strong>Product</strong><span>Wordscapes</span></div>
-      <div class="meta-item"><strong>Method</strong><span>Moderated Interviews</span></div>
-      <div class="meta-item"><strong>My Role</strong><span>Senior User Researcher</span></div>
-      <div class="meta-item"><strong>Participants</strong><span>8 Players</span></div>
+      <div class="meta-item"><strong>Company</strong><span>Facebook</span></div>
+      <div class="meta-item"><strong>Team</strong><span>Remote Presence</span></div>
+      <div class="meta-item"><strong>Method</strong><span>Brand Tracking Survey</span></div>
+      <div class="meta-item"><strong>My Role</strong><span>UX Researcher</span></div>
+      <div class="meta-item"><strong>Participants</strong><span>25,000 Respondents</span></div>
     </div>
   </div>
 </div>
@@ -594,46 +501,59 @@ footer {
 <div class="body">
 
   <h2>Background</h2>
-  <div class="clearfix">
-    <figure class="img-float-right">
-      <img src="wordscapes_home_screen.png" alt="Wordscapes Home Screen" />
-      <figcaption>The Wordscapes Home Screen</figcaption>
-    </figure>
-    <p>Wordscapes is a casual mobile word puzzle game developed by PeopleFun. Players connect letters to form words and complete crossword-style puzzles set against scenic landscape backgrounds. With more than 10 million players and a 22% share of the global word games market, it is one of the most widely played games in its category. As of 2026, the game averages approximately 2 million daily active players.</p>
-    <p>Since launching in 2017, Wordscapes has introduced new features and entry points on the Home Screen. Over time, these additions increased the number of visible icons and UI elements players encounter when starting a session.</p>
-  </div>
-
-  <h2>Challenge</h2>
-  <p>The Game Team wanted to reorganize and simplify the Home Screen to reduce perceived visual clutter and create space for new features and meta systems. However, the team had limited insight into how players actually used the screen. Before making structural changes, we needed to understand how players navigate and prioritize features in order to reduce the risk of disrupting established player behaviors and habits.</p>
-
-  <h2>Problem</h2>
-  <p>The team lacked visibility into how players navigate the Home Screen, which features anchor their daily routines, and how players mentally organize the different elements on the screen. Without this understanding, it was difficult to determine which areas of the interface could be safely reorganized without negatively affecting player engagement and retention.</p>
-
-  <h2>My Role</h2>
-  <p>I collaborated with UX and Design to identify the core research questions and design a Home Screen customization exercise. I wrote the moderator guide, recruited participants, and conducted remote moderated interviews with highly engaged and tenured Wordscapes players.</p>
-
-  <h2>Process</h2>
-  <p>I conducted 60-minute remote moderated interviews with eight highly engaged Wordscapes players recruited through an in-game recruitment survey. Sessions began with a discussion of players' daily routines and how they currently navigate the Home Screen. Participants then completed a customization exercise in which they arranged feature icons on a blank Home Screen, revealing how they mentally organize the interface.</p>
+  <p>Facebook, Messenger, and Instagram are social media platforms owned by Meta Platforms that allow billions of people around the world to connect and communicate online. Facebook focuses on social networking and communities, Messenger supports direct messaging and voice and video calling, and Instagram centers on photo and video sharing.</p>
+  <p>In 2020, Facebook launched Messenger Rooms, a group video calling feature that allowed up to 50 people to join a call without needing a Facebook account. By 2021, calling had become a central part of communication across Meta's messaging ecosystem, with more than 700 million people making voice and video calls each day across Messenger and WhatsApp. With this expansion, the team needed to understand product market fit for Messenger Rooms alongside other video calling products within the Facebook ecosystem.</p>
 
   <div class="img-block">
     <figure>
-      <img src="home_screen_process.png" alt="Research session screenshot" />
-      <figcaption>Participant completing the Home Screen customization exercise during a remote moderated session</figcaption>
+      <img src="fb-messenger-rooms.png" alt="Messenger Rooms video calling interface" />
+      <figcaption>Messenger Rooms — Facebook's group video calling feature</figcaption>
+    </figure>
+  </div>
+
+  <h2>Challenge</h2>
+  <p>The team had an established tracking survey measuring messaging usage on Instagram and Messenger compared to other messaging apps. However, the survey did not include measures for voice or video calling, leaving a gap in our ability to understand how calling on Meta platforms compared to other communication apps.</p>
+
+  <h2>Problem</h2>
+  <p>The team needed to understand how voice and video calling on Meta platforms compared to other communication apps in the market. Specifically, we needed to measure awareness, usage, and sentiment toward voice and video calling.</p>
+
+  <h2>My Role</h2>
+  <p>I collaborated with the Lead Messenger and Instagram researchers to design the survey and partnered with an external vendor to field the study. I analyzed the results to identify insights that informed product strategy and growth opportunities for voice and video calling features.</p>
+
+  <h2>Process</h2>
+  <p>We conducted cognitive testing to ensure key survey measures were clear and easily understood. We then fielded a survey with 25,000 teens (13+) and adults across the United States, Canada, the United Kingdom, the Philippines, and Vietnam.</p>
+  <p>The study was conducted with an external vendor and recruited a broad population of communication app users rather than only Facebook or Instagram users to avoid platform bias. The survey measured awareness, usage, and sentiment toward voice and video calling across major apps including Messenger, WhatsApp, Instagram, FaceTime, Zoom, and Discord. Initial analysis focused on users under 30, the primary target audience for calling products on Messenger and Instagram.</p>
+
+  <div class="survey-card">
+    <div class="survey-card-label">Example Survey Questions</div>
+    <ul>
+      <li>Which apps do you use for voice and video calls?</li>
+      <li>How frequently do you make video calls on each app?</li>
+      <li>Which app do you use most often for video calls?</li>
+      <li>How would you rate the quality and reliability of calls across apps?</li>
+    </ul>
+  </div>
+
+  <div class="img-block">
+    <figure>
+      <div class="placeholder" style="height: 280px;">[ Research Timeline — Coming Soon ]</div>
+      <figcaption>Research timeline from planning through Wave 2 results</figcaption>
     </figure>
   </div>
 
   <h2>What We Learned</h2>
-  <p>Players mentally organize the Home Screen into spatial zones and rely on a small set of routine features such as Daily Puzzle and Daily Goals to anchor their sessions. The research also showed that feature placement alone does not drive engagement, as some elements were seen as appropriately placed but were rarely actively checked.</p>
+  <p>Messenger and Instagram had strong awareness among younger users, but they were not always the primary apps used for voice or video calling. Calling behavior was heavily influenced by platform ecosystems and use case context. For example, iPhone users frequently defaulted to FaceTime, while apps like Zoom were commonly used for scheduled group calls. Overall, Meta's calling products were competitive in the market but were often used alongside other communication apps rather than serving as the primary calling platform.</p>
 
   <div class="img-block">
     <figure>
-      <img src="home_screen_findings.png" alt="Zone map deliverable" />
-      <figcaption>Zone map synthesized from session findings and delivered to cross-functional teams</figcaption>
+      <img src="rtc_chart.png" alt="Primary video calling app among users under 30 by device type" />
+      <figcaption>Primary video calling app among users under 30, by device type</figcaption>
     </figure>
   </div>
 
   <h2>Impact</h2>
-  <p>The research clarified which areas of the Home Screen anchor player routines and which areas function as secondary spaces. These insights helped the team identify where new features could be introduced without disrupting established player habits. The findings informed follow-up product experiments, including an A/B test of the Daily Puzzle location, the removal of the Dictionary feature, and testing future placements for tournaments and daily features.</p>
+  <p>The research established a global baseline for voice and video calling and benchmarked Meta platforms against competitors. The findings informed product strategy and highlighted opportunities to improve adoption, positioning, and competitive standing of calling features on Messenger and Instagram, such as leaning into shared, collaborative hangout spaces.</p>
+  <p>Following this work, the survey was established as a recurring tracking study, first launched domestically in the U.S. and later expanded globally, and is now run twice annually to monitor trends over time.</p>
 
 </div>
 
@@ -642,33 +562,6 @@ footer {
   <div class="footer-name">Jazzmyne Miller</div>
   <div class="footer-right">© 2025</div>
 </footer>
-
-<!-- Password JS disabled temporarily -->
-<!--
-<script>
-  const PASSWORD = 'research2025';
-
-  function checkPassword() {
-    const input = document.getElementById('gate-input').value;
-    const error = document.getElementById('gate-error');
-    if (input === PASSWORD) {
-      document.getElementById('password-gate').style.display = 'none';
-      sessionStorage.setItem('cs1-unlocked', 'true');
-    } else {
-      error.style.display = 'block';
-      document.getElementById('gate-input').value = '';
-    }
-  }
-
-  document.getElementById('gate-input').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') checkPassword();
-  });
-
-  if (sessionStorage.getItem('cs1-unlocked') === 'true') {
-    document.getElementById('password-gate').style.display = 'none';
-  }
-</script>
--->
 
 
 <script>

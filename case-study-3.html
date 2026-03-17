@@ -329,6 +329,77 @@ footer {
   footer { flex-direction: column; text-align: center; }
 }
 
+
+/* MOBILE NAV */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  background: rgba(245,245,240,0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem;
+  z-index: 99;
+  flex-direction: column;
+  gap: 0;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+.nav-mobile-link:last-child { border-bottom: none; }
+.nav-mobile-section {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0.9rem 0 0.4rem;
+}
+.nav-mobile-sub {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.6rem 0 0.6rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+.nav-mobile-sub:last-child { border-bottom: none; }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
 </style>
 </head>
 <body>
@@ -347,7 +418,7 @@ footer {
       </a>
       <div class="nav-dropdown-menu">
         <a href="case-study-1.html" class="nav-dropdown-item">Home Screen Mental Models</a>
-        <a href="case-study-2.html" class="nav-dropdown-item">RTC Tracking Survey</a>
+        <a href="case-study-2.html" class="nav-dropdown-item">Benchmarking Video Calling Use</a>
         <a href="case-study-3.html" class="nav-dropdown-item active">Evaluating a New Competitive Feature</a>
         <a href="case-study-4.html" class="nav-dropdown-item">Unlocking Customer Segments</a>
         <a href="data-projects.html" class="nav-dropdown-item">Other Data Analysis Projects</a>
@@ -356,7 +427,24 @@ footer {
     <li><a href="resume.html">Resume</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="about.html" class="nav-mobile-link">About</a>
+  <div class="nav-mobile-section">Work</div>
+  <a href="work.html" class="nav-mobile-sub">All Projects</a>
+  <a href="case-study-1.html" class="nav-mobile-sub">Home Screen Mental Models</a>
+  <a href="case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>
+  <a href="case-study-3.html" class="nav-mobile-sub">Evaluating a New Competitive Feature</a>
+  <a href="case-study-4.html" class="nav-mobile-sub">Unlocking Customer Segments</a>
+  <a href="data-projects.html" class="nav-mobile-sub">Other Data Analysis Projects</a>
+  <a href="resume.html" class="nav-mobile-link">Resume</a>
+  <a href="contact.html" class="nav-mobile-link">Contact</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -431,6 +519,22 @@ footer {
   <div class="footer-name">Jazzmyne Miller</div>
   <div class="footer-right">© 2025</div>
 </footer>
+
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-mobile-link, .nav-mobile-sub').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    });
+  });
+</script>
 
 </body>
 </html>

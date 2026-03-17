@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 2 — Photo Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Instrument Sans', sans-serif; background: #F5F5F0; padding: 3rem 2rem; }
+.row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.card { border-radius: 8px; overflow: hidden; background: #fff; border: 1px solid rgba(0,0,0,0.08); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.card-visual { height: 160px; overflow: hidden; position: relative; }
+.card-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.card-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(20,33,61,0.1) 0%, rgba(20,33,61,0.45) 100%); }
+.lock { position: absolute; top: 10px; right: 10px; z-index: 2; }
+.card-body { padding: 1rem 1.25rem 1.25rem; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; color: #14213D; margin-bottom: 0.4rem; line-height: 1.3; }
+.card-desc { font-size: 0.75rem; color: #6B6B76; line-height: 1.5; margin-bottom: 0.75rem; }
+.card-read { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #FCA311; }
+</style>
+</head>
+<body>
+
+<div class="row">
+
+  <!-- Card 1: Word tiles — Home Screen Mental Models -->
+  <div class="card">
+    <div class="card-visual">
+      <img src="word-tiles.jpg" alt="Word tiles" />
+      <svg class="lock" width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" fill="#FCA311"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="#FCA311" stroke-width="2.5"/><circle cx="12" cy="16" r="1.5" fill="#14213D"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Home Screen Mental Models</div>
+      <div class="card-desc">Understanding how players navigate and mentally organize a mobile game interface.</div>
+      <div class="card-read">Read Case Study →</div>
+    </div>
+  </div>
+
+  <!-- Card 2: Laptop video call — Benchmarking Video Calling Use -->
+  <div class="card">
+    <div class="card-visual">
+      <img src="laptop-video-call.jpg" alt="Video call on laptop" />
+      <svg class="lock" width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" fill="#FCA311"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="#FCA311" stroke-width="2.5"/><circle cx="12" cy="16" r="1.5" fill="#14213D"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Benchmarking Video Calling Use</div>
+      <div class="card-desc">Measuring awareness and sentiment for voice and video calling across a global landscape.</div>
+      <div class="card-read">Read Case Study →</div>
+    </div>
+  </div>
+
+  <!-- Card 3: Person on phone — Evaluating a New Competitive Feature -->
+  <div class="card">
+    <div class="card-visual">
+      <img src="mobile-gaming.jpg" alt="Person playing mobile game" />
+      <svg class="lock" width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" fill="#FCA311"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="#FCA311" stroke-width="2.5"/><circle cx="12" cy="16" r="1.5" fill="#14213D"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Evaluating a New Competitive Feature</div>
+      <div class="card-desc">Understanding player reactions to a proposed change to an existing competitive feature.</div>
+      <div class="card-read">Read Case Study →</div>
+    </div>
+  </div>
+
+  <!-- Card 4: CPG bottles — Unlocking Customer Segments -->
+  <div class="card">
+    <div class="card-visual">
+      <img src="cpg-products.jpg" alt="Consumer products" />
+    </div>
+    <div class="card-body">
+      <div class="card-title">Unlocking Customer Segments</div>
+      <div class="card-desc">Identifying prime consumer segments through psychographic profiling and predictive modeling.</div>
+      <div class="card-read">Read Case Study →</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
