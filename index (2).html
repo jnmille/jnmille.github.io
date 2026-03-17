@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jazzmyne Miller — Senior User Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white:    #F5F5F0;
+  --offwhite: #EFEFEA;
+  --silver:   #E0E0DA;
+  --gold:     #FCA311;
+  --gold-dim: rgba(252,163,17,0.1);
+  --gold-mid: rgba(252,163,17,0.3);
+  --navy:     #14213D;
+  --navy-soft:#2a3a5c;
+  --ink:      #111114;
+  --muted:    #6B6B76;
+  --rule:     rgba(0,0,0,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.25rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(245,245,240,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--navy); }
+
+/* DROPDOWN */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+}
+
+.nav-dropdown-toggle:hover { color: var(--navy); }
+
+.nav-dropdown-toggle svg {
+  transition: transform 0.2s;
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle svg {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  min-width: 280px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: 0;
+  text-transform: none;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: var(--offwhite); color: var(--ink); }
+
+.nav-dropdown-item span {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 9rem 2rem 5rem;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(252,163,17,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(20,33,61,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(3rem, 7vw, 6rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+
+.hero-title {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--navy);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+.hero-rule {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+
+.hero-rule-line {
+  width: 60px; height: 1px;
+  background: var(--gold);
+}
+
+.hero-rule-diamond {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.hero-headline {
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  color: var(--navy);
+  max-width: 44ch;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 0.9rem 2.25rem;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.2s;
+  border: 2px solid var(--navy);
+  animation: fadeUp 0.7s 0.5s ease both;
+}
+
+.hero-cta:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+  transform: translateY(-2px);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.hero-scroll-line {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* SECTION BASE */
+section { padding: 7rem 3.5rem; }
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 2.5rem;
+}
+
+/* EXPERTISE */
+#expertise {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.expertise-row {
+  display: flex;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.expertise-card {
+  flex: 1;
+  padding: 2.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: background 0.25s;
+}
+
+.expertise-card:hover { background: var(--offwhite); }
+
+.expertise-card + .expertise-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 3px;
+  background: var(--gold);
+}
+
+.expertise-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.expertise-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.expertise-card-desc {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* SKILLS */
+#skills {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: var(--white);
+}
+
+#skills .section-heading { color: var(--white); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.skill-group-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(252,163,17,0.25);
+}
+
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+}
+
+.skill-dot {
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* CASE STUDIES */
+#case-studies {
+  background: var(--offwhite);
+  border-top: 1px solid var(--rule);
+  color: var(--ink);
+}
+
+#case-studies .section-heading { color: var(--navy) !important; }
+#case-studies .case-intro { color: var(--muted) !important; }
+#case-studies .case-title { color: var(--navy) !important; }
+#case-studies .case-desc { color: var(--muted) !important; }
+
+.case-intro {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 60ch;
+  margin-bottom: 3.5rem;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.case-card {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--silver);
+}
+
+.case-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+}
+
+.case-visual {
+  width: 100%;
+  height: 140px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Abstract visuals per card */
+.case-visual-1 {
+  background: linear-gradient(135deg, #14213D 0%, #2a3a5c 50%, #1a2a4a 100%);
+}
+
+.case-visual-1::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 50%, rgba(252,163,17,0.25) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(252,163,17,0.1) 0%, transparent 40%);
+}
+
+.case-visual-1::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; height: 120px;
+  border: 1px solid rgba(252,163,17,0.3);
+  border-radius: 50%;
+  box-shadow: 0 0 0 30px rgba(252,163,17,0.05), 0 0 0 60px rgba(252,163,17,0.03);
+}
+
+.case-visual-1 .vis-inner {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  width: 110px;
+}
+
+.case-visual-1 .vis-inner span {
+  width: 14px; height: 14px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.case-visual-1 .vis-inner span:nth-child(odd) { opacity: 0.3; transform: scale(0.7); }
+
+.case-visual-2 {
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.case-visual-2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 18px,
+    rgba(252,163,17,0.07) 18px,
+    rgba(252,163,17,0.07) 19px
+  ),
+  repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 18px,
+    rgba(252,163,17,0.07) 18px,
+    rgba(252,163,17,0.07) 19px
+  );
+}
+
+.case-visual-2 .vis-bars {
+  position: absolute;
+  bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.case-visual-2 .vis-bars span {
+  width: 18px;
+  background: var(--gold);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.8;
+}
+
+.case-visual-3 {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #203a43 100%);
+}
+
+.case-visual-3::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(252,163,17,0.12) 0%, transparent 65%);
+}
+
+.case-visual-3 .vis-circles {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.case-visual-3 .vis-circles span {
+  position: absolute;
+  border: 1px solid rgba(252,163,17,0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.case-visual-4 {
+  background: linear-gradient(135deg, #1a0a00 0%, #2d1500 50%, #3d2000 100%);
+}
+
+.case-visual-4::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 60% 40%, rgba(252,163,17,0.2) 0%, transparent 55%);
+}
+
+.case-visual-4 .vis-segments {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px; height: 100px;
+}
+
+.case-visual-4 .vis-segments svg {
+  width: 100%; height: 100%;
+}
+
+.case-body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.case-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.case-desc {
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--muted);
+  flex: 1;
+}
+
+.case-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.5rem;
+  transition: gap 0.2s;
+}
+
+.case-card:hover .case-read-more { gap: 0.65rem; }
+
+/* CONTACT */
+#contact {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+}
+
+.contact-inner {
+  max-width: 660px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.contact-sub {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--navy);
+  margin-bottom: 3rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.contact-link-primary {
+  background: var(--navy);
+  color: var(--white);
+  border: 2px solid var(--navy);
+}
+
+.contact-link-primary:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+  transform: translateY(-2px);
+}
+
+.contact-link-secondary {
+  background: transparent;
+  color: var(--navy);
+  border: 2px solid var(--navy);
+}
+
+.contact-link-secondary:hover {
+  background: var(--navy);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.contact-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  margin-bottom: 2rem;
+}
+
+.contact-sign {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.contact-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  padding: 2rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+.footer-right {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1; }
+}
+
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.js-loaded .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.js-loaded .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE NAV */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  background: rgba(245,245,240,0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem;
+  z-index: 99;
+  flex-direction: column;
+  gap: 0;
+}
+
+.nav-mobile-menu.open { display: flex; }
+
+.nav-mobile-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+
+.nav-mobile-link:last-child { border-bottom: none; }
+
+.nav-mobile-section {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0.9rem 0 0.4rem;
+}
+
+.nav-mobile-sub {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.6rem 0 0.6rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+
+.nav-mobile-sub:last-child { border-bottom: none; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .expertise-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  section { padding: 5rem 1.5rem; }
+  .expertise-row { flex-direction: column; }
+  .skills-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .case-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .expertise-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 1rem; }
+}
+
+
+/* TOUCH FRIENDLY DROPDOWN */
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-name">Jazzmyne Miller</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li class="nav-dropdown">
+      <a href="work.html" class="nav-dropdown-toggle">
+        Work
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <div class="nav-dropdown-menu">
+        <a href="case-study-1.html" class="nav-dropdown-item">Home Screen Mental Models</a>
+        <a href="case-study-2.html" class="nav-dropdown-item">Benchmarking Video Calling Use</a>
+        <a href="case-study-3.html" class="nav-dropdown-item">Player Sentiment toward Competitive Features</a>
+        <a href="case-study-4.html" class="nav-dropdown-item">Unlocking Customer Segments</a>
+        <a href="data-projects.html" class="nav-dropdown-item">Other Data Analysis Projects</a>
+      </div>
+    </li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="about.html" class="nav-mobile-link">About</a>
+  <div class="nav-mobile-section">Work</div>
+  <a href="work.html" class="nav-mobile-sub">All Projects</a>
+  <a href="case-study-1.html" class="nav-mobile-sub">Home Screen Mental Models</a>
+  <a href="case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>
+  <a href="case-study-3.html" class="nav-mobile-sub">Player Sentiment toward Competitive Features</a>
+  <a href="case-study-4.html" class="nav-mobile-sub">Unlocking Customer Segments</a>
+  <a href="data-projects.html" class="nav-mobile-sub">Other Data Analysis Projects</a>
+  <a href="resume.html" class="nav-mobile-link">Resume</a>
+  <a href="contact.html" class="nav-mobile-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 class="hero-name">Jazzmyne Miller</h1>
+  <p class="hero-title">Senior User Researcher</p>
+  <div class="hero-rule">
+    <div class="hero-rule-line"></div>
+    <div class="hero-rule-diamond"></div>
+    <div class="hero-rule-line"></div>
+  </div>
+  <p class="hero-headline">I help teams better understand their users, consumers, and products. I enjoy digging into research to uncover patterns in behavior and how people make decisions.</p>
+  <a href="#case-studies" class="hero-cta">View My Work</a>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote" style="padding: 4rem 3.5rem; background: var(--navy); text-align: center; border-top: 1px solid rgba(255,255,255,0.06);">
+  <div style="max-width: 720px; margin: 0 auto;" class="reveal">
+    <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 400; color: var(--white); line-height: 1.6; margin-bottom: 1.25rem;"><span style="color: var(--gold); font-size: 1.5em; line-height: 0; vertical-align: -0.3em;">"</span>If everything was perfect, you would never learn and you would never grow.<span style="color: var(--gold); font-size: 1.5em; line-height: 0; vertical-align: -0.3em;">"</span></p>
+    <p style="font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);">— Beyoncé Knowles-Carter</p>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-inner">
+    <div class="reveal">
+      <h2 class="section-heading">Areas of Expertise</h2>
+    </div>
+    <div class="expertise-row reveal">
+      <div class="expertise-card">
+        <div class="expertise-icon">🔍</div>
+        <p class="expertise-card-title">User Research</p>
+        <p class="expertise-card-desc">End-to-end research across the full product lifecycle, from generative discovery to evaluative testing post-launch.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">📋</div>
+        <p class="expertise-card-title">Survey Design</p>
+        <p class="expertise-card-desc">Designing precise, unbiased surveys from instrument design and sampling to analysis and reporting.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">📊</div>
+        <p class="expertise-card-title">Data Analysis</p>
+        <p class="expertise-card-desc">Statistical analysis that transforms behavioral, economic, and health data into actionable insights.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">⚙️</div>
+        <p class="expertise-card-title">Research Ops</p>
+        <p class="expertise-card-desc">Building the infrastructure and systems that make research scalable and sustainable across teams.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">🌍</div>
+        <p class="expertise-card-title">Global Research</p>
+        <p class="expertise-card-desc">Research across global markets and with niche, hard-to-reach populations, navigating cultural nuance with care.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="reveal">
+      <h2 class="section-heading">The Toolkit</h2>
+    </div>
+    <div class="skills-grid reveal">
+      <div>
+        <div class="skill-group-title">Research Methods</div>
+        <ul class="skill-list">
+          <li class="skill-item"><span class="skill-dot"></span>Surveys</li>
+          <li class="skill-item"><span class="skill-dot"></span>Tracking Studies</li>
+          <li class="skill-item"><span class="skill-dot"></span>Focus Groups</li>
+          <li class="skill-item"><span class="skill-dot"></span>Usability Testing</li>
+          <li class="skill-item"><span class="skill-dot"></span>Concept Testing</li>
+          <li class="skill-item"><span class="skill-dot"></span>Prototype Testing</li>
+          <li class="skill-item"><span class="skill-dot"></span>Competitive Analysis</li>
+          <li class="skill-item"><span class="skill-dot"></span>User Segmentation</li>
+          <li class="skill-item"><span class="skill-dot"></span>Playtesting</li>
+        </ul>
+      </div>
+      <div>
+        <div class="skill-group-title">Statistical Analysis</div>
+        <ul class="skill-list">
+          <li class="skill-item"><span class="skill-dot"></span>Cluster Analysis</li>
+          <li class="skill-item"><span class="skill-dot"></span>Decision Tree Analysis</li>
+          <li class="skill-item"><span class="skill-dot"></span>Conjoint / MaxDiff</li>
+          <li class="skill-item"><span class="skill-dot"></span>Regression</li>
+          <li class="skill-item"><span class="skill-dot"></span>Key Driver Analysis</li>
+          <li class="skill-item"><span class="skill-dot"></span>Factor Analysis</li>
+          <li class="skill-item"><span class="skill-dot"></span>TURF Analysis</li>
+          <li class="skill-item"><span class="skill-dot"></span>Pricing Research (Van Westendorp)</li>
+          <li class="skill-item"><span class="skill-dot"></span>Correspondence Analysis</li>
+        </ul>
+      </div>
+      <div>
+        <div class="skill-group-title">Tools & Platforms</div>
+        <ul class="skill-list">
+          <li class="skill-item"><span class="skill-dot"></span>SPSS · R · Python · JASP</li>
+          <li class="skill-item"><span class="skill-dot"></span>Qualtrics · Alchemer</li>
+          <li class="skill-item"><span class="skill-dot"></span>Lookback · dscout · PlaytestCloud</li>
+          <li class="skill-item"><span class="skill-dot"></span>Figma · Mural</li>
+          <li class="skill-item"><span class="skill-dot"></span>Confluence · Jira</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="case-studies">
+  <div class="section-inner">
+    <div class="reveal">
+      <h2 class="section-heading">Selected Work</h2>
+      <p class="case-intro" style="color: var(--muted) !important;">Here are a few research projects from my work across mobile gaming, social media, and consumer insights.</p>
+    </div>
+    <div class="case-grid reveal">
+
+      <a href="case-study-1.html" class="case-card">
+        <div class="case-visual case-visual-1" style="position:relative;overflow:hidden;padding:0;">
+          <img src="word-tiles.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" alt="Word tiles" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,33,61,0.1),rgba(20,33,61,0.45));"></div>
+          <svg style="position:absolute;top:10px;right:10px;z-index:2;" width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" fill="#FCA311"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="#FCA311" stroke-width="2.5"/><circle cx="12" cy="16" r="1.5" fill="#14213D"/></svg>
+        </div>
+        <div class="case-body">
+          <h3 class="case-title">Home Screen Mental Models</h3>
+          <p class="case-desc">Understanding how players navigate and mentally organize a mobile game interface.</p>
+          <span class="case-read-more">Read Case Study →</span>
+        </div>
+      </a>
+
+      <a href="case-study-3.html" class="case-card">
+        <div class="case-visual case-visual-2" style="position:relative;overflow:hidden;padding:0;">
+          <img src="mobile-gaming.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" alt="Mobile gaming" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,33,61,0.1),rgba(20,33,61,0.45));"></div>
+          <svg style="position:absolute;top:10px;right:10px;z-index:2;" width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" fill="#FCA311"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="#FCA311" stroke-width="2.5"/><circle cx="12" cy="16" r="1.5" fill="#14213D"/></svg>
+        </div>
+        <div class="case-body">
+          <h3 class="case-title">Player Sentiment toward Competitive Features</h3>
+          <p class="case-desc">Understanding player reactions to a proposed change to an existing competitive feature.</p>
+          <span class="case-read-more">Read Case Study →</span>
+        </div>
+      </a>
+
+      <a href="case-study-2.html" class="case-card">
+        <div class="case-visual case-visual-3" style="position:relative;overflow:hidden;padding:0;">
+          <img src="laptop-video-call.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" alt="Video call" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,33,61,0.1),rgba(20,33,61,0.45));"></div>
+          <svg style="position:absolute;top:10px;right:10px;z-index:2;" width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" fill="#FCA311"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="#FCA311" stroke-width="2.5"/><circle cx="12" cy="16" r="1.5" fill="#14213D"/></svg>
+        </div>
+        <div class="case-body">
+          <h3 class="case-title">Benchmarking Video Calling Use</h3>
+          <p class="case-desc">Measuring awareness, usage, and sentiment for voice and video calling across a competitive market.</p>
+          <span class="case-read-more">Read Case Study →</span>
+        </div>
+      </a>
+
+      <a href="case-study-4.html" class="case-card">
+        <div class="case-visual case-visual-4" style="position:relative;overflow:hidden;padding:0;">
+          <img src="cpg-products.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" alt="Consumer products" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,33,61,0.1),rgba(20,33,61,0.45));"></div>
+        </div>
+        <div class="case-body">
+          <h3 class="case-title">Unlocking Customer Segments</h3>
+          <p class="case-desc">Identifying prime consumer segments through psychographic profiling and predictive modeling.</p>
+          <span class="case-read-more">Read Case Study →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <h2 class="contact-heading">Let's Work Together</h2>
+    <p class="contact-sub">Open to senior individual contributor roles and freelance consulting opportunities where research has a real seat at the table.</p>
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#80eaeeede9ecece5f2ede1c0e7ede1e9ecaee3efed" class="contact-link contact-link-primary">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.3"/></svg>
+        Email Me
+      </a>
+      <a href="https://linkedin.com/in/jnmillerma" target="_blank" class="contact-link contact-link-secondary">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 6v4M4 4.5v.01M7 10V8a1 1 0 012 0v2M7 6v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <div class="contact-divider"></div>
+    <span class="contact-sign"></span>
+    <p class="contact-tagline">Live long and research 🖖</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Jazzmyne Miller</div>
+  <div class="footer-right">© 2026</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.body.classList.add('js-loaded');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+  }
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.nav-mobile-link, .nav-mobile-sub').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    });
+  });
+
+  // Touch-friendly dropdown
+  document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      const dropdown = this.closest('.nav-dropdown');
+      const isOpen = dropdown.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+      if (!isOpen) {
+        dropdown.classList.add('open');
+        e.preventDefault();
+      }
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest
