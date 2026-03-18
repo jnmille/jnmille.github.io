@@ -461,10 +461,6 @@ footer {
 </footer>
 
 <script>
-  // Build email link to prevent obfuscation
-  var u = 'jnmillerma'; var d = 'gmail.com';
-  document.getElementById('email-link').href = 'mailto:' + u + '@' + d;
-
   function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
     const hamburger = document.getElementById('hamburger');
@@ -482,5 +478,15 @@ footer {
       const dropdown = this.closest('.nav-dropdown');
       const isOpen = dropdown.classList.contains('open');
       document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
-      if (!isOpen) {
-        dr
+      if (!isOpen) { dropdown.classList.add('open'); e.preventDefault(); }
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) {
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+    }
+  });
+</script>
+
+</body>
+</html>
