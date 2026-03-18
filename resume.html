@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- email-obfuscation: off -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resume — Jazzmyne Miller</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -193,14 +194,7 @@ nav {
 
 .nav-mobile-link:last-child { border-bottom: none; }
 
-.nav-mobile-section {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding: 0.9rem 0 0.4rem;
-}
+
 
 .nav-mobile-sub {
   font-size: 0.82rem;
@@ -588,7 +582,7 @@ footer {
 <!-- MOBILE MENU -->
 <div class="nav-mobile-menu" id="mobile-menu">
   <a href="about.html" class="nav-mobile-link">About</a>
-  <div class="nav-mobile-section">Work</div>
+  <a href="work.html" class="nav-mobile-link">Work</a>
   <a href="work.html" class="nav-mobile-sub">All Projects</a>
   <a href="case-study-1.html" class="nav-mobile-sub">Home Screen Mental Models</a>
   <a href="case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>
@@ -615,7 +609,7 @@ footer {
   <!-- CONTACT -->
   <div class="resume-name-block">
     <div class="resume-contact">
-      <a href="/cdn-cgi/l/email-protection#aac0c4c7c3c6c6cfd8c7cbeacdc7cbc3c684c9c5c7" style="color:var(--navy);font-weight:600;">Email</a> &nbsp;·&nbsp;
+      <a href="/cdn-cgi/l/email-protection#402a2e2d292c2c25322d2100272d21292c6e232f2d" style="color:var(--navy);font-weight:600;">Email</a> &nbsp;·&nbsp;
       <a href="https://www.linkedin.com/in/jnmillerma" target="_blank" style="color:var(--navy);font-weight:600;">LinkedIn</a>
     </div>
   </div>
@@ -681,7 +675,7 @@ footer {
       </div>
       <div class="job-role">
         <div class="job-title">User Experience Researcher</div>
-        <div class="job-dates">December 2020 — January 2023</div>
+        <div class="job-dates">December 2020 — November 2022</div>
       </div>
       <ul class="job-bullets">
         <li>Collaborated cross-functionally with product design, product management, data science, engineering, and content design to build and iterate video calling features.</li>
@@ -753,7 +747,7 @@ footer {
   <div class="footer-right">© 2026</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
     const hamburger = document.getElementById('hamburger');
@@ -766,24 +760,10 @@ footer {
       document.getElementById('hamburger').classList.remove('open');
     });
   });
-
   document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
     toggle.addEventListener('click', function(e) {
       const dropdown = this.closest('.nav-dropdown');
       const isOpen = dropdown.classList.contains('open');
       document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
       if (!isOpen) {
-        dropdown.classList.add('open');
-        e.preventDefault();
-      }
-    });
-  });
-
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.nav-dropdown')) {
-      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
-    }
-  });
-</script>
-</body>
-</html>
+        dr

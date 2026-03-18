@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- email-obfuscation: off -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research Projects — Jazzmyne Miller</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -463,12 +464,17 @@ footer {
 
 /* ANIMATIONS */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.reveal.visible {
+.js-loaded .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-loaded .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -532,14 +538,7 @@ footer {
   display: block;
 }
 .nav-mobile-link:last-child { border-bottom: none; }
-.nav-mobile-section {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding: 0.9rem 0 0.4rem;
-}
+
 .nav-mobile-sub {
   font-size: 0.82rem;
   font-weight: 400;
@@ -598,7 +597,7 @@ footer {
 <!-- MOBILE MENU -->
 <div class="nav-mobile-menu" id="mobile-menu">
   <a href="about.html" class="nav-mobile-link">About</a>
-  <div class="nav-mobile-section">Work</div>
+  <a href="work.html" class="nav-mobile-link">Work</a>
   <a href="work.html" class="nav-mobile-sub">All Projects</a>
   <a href="case-study-1.html" class="nav-mobile-sub">Home Screen Mental Models</a>
   <a href="case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>

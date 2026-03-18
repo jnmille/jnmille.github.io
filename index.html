@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- email-obfuscation: off -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jazzmyne Miller — Senior User Researcher</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -778,8 +779,8 @@ footer {
 }
 
 .js-loaded .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .js-loaded .reveal.visible {
@@ -841,14 +842,7 @@ footer {
 
 .nav-mobile-link:last-child { border-bottom: none; }
 
-.nav-mobile-section {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding: 0.9rem 0 0.4rem;
-}
+
 
 .nav-mobile-sub {
   font-size: 0.82rem;
@@ -923,7 +917,7 @@ footer {
     <li><a href="resume.html">Resume</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -931,7 +925,7 @@ footer {
 <!-- MOBILE MENU -->
 <div class="nav-mobile-menu" id="mobile-menu">
   <a href="about.html" class="nav-mobile-link">About</a>
-  <div class="nav-mobile-section">Work</div>
+  <a href="work.html" class="nav-mobile-link">Work</a>
   <a href="work.html" class="nav-mobile-sub">All Projects</a>
   <a href="case-study-1.html" class="nav-mobile-sub">Home Screen Mental Models</a>
   <a href="case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>
@@ -1122,7 +1116,7 @@ footer {
     <h2 class="contact-heading">Let's Work Together</h2>
     <p class="contact-sub">Open to senior individual contributor roles and freelance consulting opportunities where research has a real seat at the table.</p>
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#80eaeeede9ecece5f2ede1c0e7ede1e9ecaee3efed" class="contact-link contact-link-primary">
+      <a href="/cdn-cgi/l/email-protection#741e1a191d181811061915341319151d185a171b19" class="contact-link contact-link-primary">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.3"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.3"/></svg>
         Email Me
       </a>
@@ -1144,8 +1138,6 @@ footer {
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  document.body.classList.add('js-loaded');
-
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1155,7 +1147,10 @@ footer {
     });
   }, { threshold: 0.1 });
 
+  document.body.classList.add('js-loaded');
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.getElementById('hamburger').addEventListener('click', toggleMenu);
 
   function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
@@ -1190,6 +1185,7 @@ footer {
       document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
     }
   });
-</script>
-</body>
-</html>
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e
