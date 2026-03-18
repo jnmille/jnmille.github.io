@@ -1138,20 +1138,6 @@ footer {
 </footer>
 
 <script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.body.classList.add('js-loaded');
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  document.getElementById('hamburger').addEventListener('click', toggleMenu);
-
   function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
     const hamburger = document.getElementById('hamburger');
@@ -1180,6 +1166,24 @@ footer {
     });
   });
 
-  document.addEventListener('click', function(e) {
+    document.addEventListener('click', function(e) {
     if (!e.target.closest('.nav-dropdown')) {
-      document.querySelectorAll('.nav-dropdown').forEac
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+    }
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.body.classList.add('js-loaded');
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
