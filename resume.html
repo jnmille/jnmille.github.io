@@ -289,7 +289,7 @@ nav {
 }
 
 .resume-contact {
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: var(--muted);
   letter-spacing: 0.04em;
 }
@@ -763,4 +763,17 @@ footer {
   document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
     toggle.addEventListener('click', function(e) {
       const dropdown = this.closest('.nav-dropdown');
-      const isOpen = dropdown
+      const isOpen = dropdown.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+      if (!isOpen) { dropdown.classList.add('open'); e.preventDefault(); }
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) {
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+    }
+  });
+</script>
+
+</body>
+</html>
