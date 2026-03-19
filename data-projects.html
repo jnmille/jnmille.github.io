@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!-- email-obfuscation: off -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Other Data Analysis Projects — Jazzmyne Miller</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Data Analysis Projects — Jazzmyne Miller</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,8 +12,12 @@
 :root {
   --white:    #F5F5F0;
   --offwhite: #EFEFEA;
+  --silver:   #E0E0DA;
   --gold:     #FCA311;
+  --gold-dim: rgba(252,163,17,0.1);
+  --gold-mid: rgba(252,163,17,0.3);
   --navy:     #14213D;
+  --navy-soft:#2a3a5c;
   --ink:      #111114;
   --muted:    #6B6B76;
   --rule:     rgba(0,0,0,0.08);
@@ -120,8 +123,7 @@ nav {
   content: '';
   position: absolute;
   top: -0.5rem;
-  left: 0;
-  right: 0;
+  left: 0; right: 0;
   height: 0.5rem;
 }
 
@@ -139,79 +141,7 @@ nav {
 
 .nav-dropdown-item:last-child { border-bottom: none; }
 .nav-dropdown-item:hover { background: var(--offwhite); }
-
-/* MOBILE NAV */
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  padding: 4px;
-  background: none;
-  border: none;
-}
-
-.nav-hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--navy);
-  border-radius: 2px;
-  transition: all 0.3s;
-}
-
-.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-.nav-mobile-menu {
-  display: none;
-  position: fixed;
-  top: 64px;
-  left: 0; right: 0;
-  background: rgba(245,245,240,0.98);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--rule);
-  padding: 1.5rem;
-  z-index: 99;
-  flex-direction: column;
-  gap: 0;
-}
-
-.nav-mobile-menu.open { display: flex; }
-
-.nav-mobile-link {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--navy);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--rule);
-  display: block;
-}
-
-.nav-mobile-link:last-child { border-bottom: none; }
-
-
-
-.nav-mobile-sub {
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: var(--muted);
-  text-decoration: none;
-  padding: 0.6rem 0 0.6rem 1rem;
-  border-bottom: 1px solid var(--rule);
-  display: block;
-}
-
-.nav-mobile-sub:last-child { border-bottom: none; }
-
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
-}
+.nav-dropdown-item.active { color: var(--gold); }
 
 /* HERO */
 .hero {
@@ -220,7 +150,7 @@ nav {
 }
 
 .hero-inner {
-  max-width: 780px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -244,7 +174,7 @@ nav {
   background: var(--gold);
 }
 
-.page-title {
+.hero-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
@@ -254,75 +184,90 @@ nav {
   margin-bottom: 1.25rem;
 }
 
-.page-lede {
-  font-size: 1.05rem;
+.hero-lede {
+  font-size: 0.9rem;
   font-weight: 300;
   color: rgba(245,245,240,0.65);
   line-height: 1.75;
   max-width: 55ch;
 }
 
-/* COMING SOON */
-.coming-soon {
-  max-width: 780px;
+/* PROJECT LIST */
+.project-section {
+  padding: 3rem 3.5rem 7rem;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 7rem 3.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1.5rem;
 }
 
-.coming-soon-icon {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-.coming-soon-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-}
-
-.coming-soon-rule {
+.project-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
 }
 
-.coming-soon-rule-line { width: 40px; height: 1px; background: var(--gold); }
-.coming-soon-rule-diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+.project-row:first-child { border-top: 1px solid var(--rule); }
+.project-row:hover .project-link { gap: 0.65rem; }
+.project-row:hover .project-title { color: var(--gold); }
 
-.coming-soon-text {
-  font-size: 0.95rem;
-  font-weight: 300;
+.project-thumb {
+  width: 140px;
+  height: 90px;
+  flex-shrink: 0;
+  background: var(--offwhite);
+  border: 1px dashed rgba(206,162,115,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--muted);
-  line-height: 1.8;
-  max-width: 45ch;
 }
 
-.coming-soon-cta {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.85rem 2rem;
-  background: var(--navy);
-  color: var(--white);
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-content { flex: 1; }
+
+.project-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+  transition: color 0.2s;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.78rem;
   font-weight: 600;
-  text-decoration: none;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  border: 2px solid var(--navy);
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-
-.coming-soon-cta:hover {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--navy);
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: gap 0.2s;
 }
 
 /* FOOTER */
@@ -350,15 +295,88 @@ footer {
   color: rgba(255,255,255,0.3);
 }
 
+/* RESPONSIVE */
 @media (max-width: 960px) {
   nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
   .hero { padding: 6rem 1.5rem 3rem; }
-  .coming-soon { padding: 5rem 1.5rem; }
+  .project-section { padding: 2rem 1.5rem 5rem; }
+  .project-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .project-thumb { width: 100%; height: 160px; }
   footer { flex-direction: column; text-align: center; }
 }
 
+/* MOBILE NAV */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* TOUCH FRIENDLY DROPDOWN */
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  background: rgba(245,245,240,0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem;
+  z-index: 99;
+  flex-direction: column;
+  gap: 0;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+.nav-mobile-link:last-child { border-bottom: none; }
+.nav-mobile-section {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0.9rem 0 0.4rem;
+}
+.nav-mobile-sub {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.6rem 0 0.6rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+.nav-mobile-sub:last-child { border-bottom: none; }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
 .nav-dropdown.open .nav-dropdown-menu {
   opacity: 1;
   pointer-events: all;
@@ -375,7 +393,7 @@ footer {
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
     <li class="nav-dropdown">
-      <a href="work.html" class="nav-dropdown-toggle">
+      <a href="work.html" class="nav-dropdown-toggle active">
         Work
         <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
           <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -386,7 +404,7 @@ footer {
         <a href="case-study-2.html" class="nav-dropdown-item">Benchmarking Video Calling Use</a>
         <a href="case-study-3.html" class="nav-dropdown-item">Player Sentiment toward Competitive Features</a>
         <a href="case-study-4.html" class="nav-dropdown-item">Unlocking Customer Segments</a>
-        <a href="data-projects.html" class="nav-dropdown-item active">Other Data Analysis Projects</a>
+        <a href="data-projects.html" class="nav-dropdown-item active">Data Analysis Projects</a>
       </div>
     </li>
     <li><a href="resume.html">Resume</a></li>
@@ -406,7 +424,7 @@ footer {
   <a href="case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>
   <a href="case-study-3.html" class="nav-mobile-sub">Player Sentiment toward Competitive Features</a>
   <a href="case-study-4.html" class="nav-mobile-sub">Unlocking Customer Segments</a>
-  <a href="data-projects.html" class="nav-mobile-sub active">Other Data Analysis Projects</a>
+  <a href="data-projects.html" class="nav-mobile-sub">Data Analysis Projects</a>
   <a href="resume.html" class="nav-mobile-link">Resume</a>
   <a href="contact.html" class="nav-mobile-link">Contact</a>
 </div>
@@ -414,20 +432,33 @@ footer {
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="tag">Other Projects</div>
-    <h1 class="page-title">Other Data Analysis Projects</h1>
+    <div class="tag">Work</div>
+    <h1 class="hero-title">Data Analysis Projects</h1>
+    <p class="hero-lede">Data analysis has always been part of how I work. These projects, completed through coursework and hackathons, show the quantitative side of my skill set and why that lens makes me a sharper researcher.</p>
   </div>
 </div>
 
-<!-- COMING SOON -->
-<div class="coming-soon">
-  <div class="coming-soon-rule">
-    <div class="coming-soon-rule-line"></div>
-    <div class="coming-soon-rule-diamond"></div>
-    <div class="coming-soon-rule-line"></div>
-  </div>
-  <h2 class="coming-soon-title">Coming Soon</h2>
-  <a href="work.html" class="coming-soon-cta">← Back to Work</a>
+<!-- PROJECT LIST -->
+<div class="project-section">
+
+  <a href="cook-county-case-study.html" class="project-row">
+    <div class="project-thumb"><img src="COVID_IMAGE.jpg" alt="COVID-19 visualization" /></div>
+    <div class="project-content">
+      <h2 class="project-title">COVID-19 & Mortality in Cook County</h2>
+      <p class="project-desc">Examining how COVID-19 reshaped death patterns in Chicago across 40,000+ medical examiner records from 2015–2020, including health equity and excess mortality analysis.</p>
+    </div>
+    <span class="project-link">View Project →</span>
+  </a>
+
+  <a href="bed-utilization.html" class="project-row">
+    <div class="project-thumb"><img src="PANDEMIC_IMAGE.jpg" alt="Pandemic response" /></div>
+    <div class="project-content">
+      <h2 class="project-title">Predicting Hospital Bed Utilization During COVID-19</h2>
+      <p class="project-desc">Built and deployed a machine learning model on AWS SageMaker to predict hospital bed utilization rates across U.S. counties during the pandemic, merging hospital capacity and case data across 3,000+ county records.</p>
+    </div>
+    <span class="project-link">View Project →</span>
+  </a>
+
 </div>
 
 <!-- FOOTER -->
@@ -450,7 +481,6 @@ footer {
     });
   });
 
-  // Touch-friendly dropdown
   document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
     toggle.addEventListener('click', function(e) {
       const dropdown = this.closest('.nav-dropdown');
@@ -468,7 +498,6 @@ footer {
       document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
     }
   });
-
 </script>
 
 </body>
