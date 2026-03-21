@@ -556,9 +556,9 @@ footer {
         </svg>
       </a>
       <div class="nav-dropdown-menu">
-        <a href="case-study-1.html" class="nav-dropdown-item active">Home Screen Mental Models</a>
-        <a href="case-study-2.html" class="nav-dropdown-item">Benchmarking Video Calling Use</a>
-        <a href="case-study-3.html" class="nav-dropdown-item">Player Sentiment toward Competitive Features</a>
+        <a href="password.html?redirect=case-study-1.html" class="nav-dropdown-item active">Home Screen Mental Models</a>
+        <a href="password.html?redirect=case-study-2.html" class="nav-dropdown-item">Benchmarking Video Calling Use</a>
+        <a href="password.html?redirect=case-study-3.html" class="nav-dropdown-item">Player Sentiment toward Competitive Features</a>
         <a href="case-study-4.html" class="nav-dropdown-item">Unlocking Customer Segments</a>
         <a href="data-projects.html" class="nav-dropdown-item">Other Data Analysis Projects</a>
       </div>
@@ -576,9 +576,9 @@ footer {
   <a href="about.html" class="nav-mobile-link">About</a>
   <a href="work.html" class="nav-mobile-link">Work</a>
   <a href="work.html" class="nav-mobile-sub">All Projects</a>
-  <a href="case-study-1.html" class="nav-mobile-sub">Home Screen Mental Models</a>
-  <a href="case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>
-  <a href="case-study-3.html" class="nav-mobile-sub">Player Sentiment toward Competitive Features</a>
+  <a href="password.html?redirect=case-study-1.html" class="nav-mobile-sub">Home Screen Mental Models</a>
+  <a href="password.html?redirect=case-study-2.html" class="nav-mobile-sub">Benchmarking Video Calling Use</a>
+  <a href="password.html?redirect=case-study-3.html" class="nav-mobile-sub">Player Sentiment toward Competitive Features</a>
   <a href="case-study-4.html" class="nav-mobile-sub">Unlocking Customer Segments</a>
   <a href="data-projects.html" class="nav-mobile-sub">Other Data Analysis Projects</a>
   <a href="resume.html" class="nav-mobile-link">Resume</a>
@@ -628,17 +628,92 @@ footer {
 
   <div class="img-block">
     <figure>
-      <img src="home_screen_process.png" alt="Research session screenshot" />
-      <figcaption>Participant completing the Home Screen customization exercise during a remote moderated session</figcaption>
+      <img src="exercise_artifacts.jpg" alt="Home Screen placement exercise stimulus" />
+      <figcaption>The Home Screen placement exercise stimulus — participants were shown a blank home screen and a list of icons, then asked to place features based on how they would naturally navigate the game</figcaption>
     </figure>
   </div>
 
   <h2>What We Learned</h2>
-  <p>Players mentally organize the Home Screen into spatial zones and rely on a small set of routine features such as Daily Puzzle and Daily Goals to anchor their sessions. The research also showed that feature placement alone does not drive engagement, as some elements were seen as appropriately placed but were rarely actively checked.</p>
+  <p>Users rely on habit rather than exploration to navigate the Home Screen. Most participants went directly to familiar areas like the bottom navigation without scanning the full screen. Competitive features were consistently grouped on the left, reinforcing learned spatial patterns. Features without a clear location (e.g., Settings, Dictionary) were often moved or hard to place.</p>
+  <p style="margin-top:1rem;"><strong>Design implication:</strong> Preserve established navigation patterns and introduce a clear, dedicated space for utility features to improve organization and reduce visual clutter.</p>
+
+  <div style="margin: 2rem 0; padding: 1.5rem; background: var(--offwhite); border-left: 4px solid var(--gold);">
+    <p style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;">On the Power of Routine</p>
+    <p style="font-size: 0.92rem; line-height: 1.75; color: #3a3a3a; font-style: italic; margin-bottom: 0.75rem;">"I've been playing long enough that I know I have an order that I go in the morning when I start in the upper right and I kind of go in a clockwise motion. I don't have any problems understanding anything. I think it's a good home screen."</p>
+    <p style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);">Wordscapes Player</p>
+  </div>
 
   <div class="img-block">
     <figure>
-      <img src="home_screen_findings.png" alt="Zone map deliverable" />
+      <p style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:#6B6B76;margin-bottom:0.75rem;">Wordscapes Home Screen — Spatial Mental Model Zone Map</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:10px 12px;background:#14213D;color:#F5F5F0;font-weight:500;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;">Zone</th>
+              <th style="text-align:left;padding:10px 12px;background:#14213D;color:#F5F5F0;font-weight:500;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;">Location</th>
+              <th style="text-align:left;padding:10px 12px;background:#14213D;color:#F5F5F0;font-weight:500;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;">Features</th>
+              <th style="text-align:center;padding:10px 12px;background:#14213D;color:#F5F5F0;font-weight:500;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;">Agreement</th>
+              <th style="text-align:left;padding:10px 12px;background:#14213D;color:#F5F5F0;font-weight:500;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;">Player Reasoning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+              <td style="padding:10px 12px;font-weight:600;color:#14213D;font-size:0.82rem;">Daily Routine Hub</td>
+              <td style="padding:10px 12px;color:#6B6B76;font-size:0.78rem;">Bottom Nav Bar</td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">Wildlife, Teams, Daily Puzzle, Daily Goals, Daily Gift</td>
+              <td style="text-align:center;padding:10px 12px;"><span style="background:#e6f0e6;color:#2d6a2d;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:500;">High</span></td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">All recurring "daily stuff" grouped in a unified priority space to start each session.</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+              <td style="padding:10px 12px;font-weight:600;color:#14213D;font-size:0.82rem;">Competitive Anchor</td>
+              <td style="padding:10px 12px;color:#6B6B76;font-size:0.78rem;">Left Rail</td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">Star Tournament, Team Tournament, Portrait Events, Butterfly Events</td>
+              <td style="text-align:center;padding:10px 12px;"><span style="background:#e6f0e6;color:#2d6a2d;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:500;">High</span></td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">Left rail is the dedicated "tournament space" for all competitive, limited-time events.</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+              <td style="padding:10px 12px;font-weight:600;color:#14213D;font-size:0.82rem;">Secondary Rewards</td>
+              <td style="padding:10px 12px;color:#6B6B76;font-size:0.78rem;">Right Rail</td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">Rewarded Video, Mt. Fortune, Wildlife Eggs</td>
+              <td style="text-align:center;padding:10px 12px;"><span style="background:#fef3e2;color:#855300;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:500;">Moderate</span></td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">"Nice-to-have" features and extra rewards not essential to the core gameplay loop.</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+              <td style="padding:10px 12px;font-weight:600;color:#14213D;font-size:0.82rem;">System Utility</td>
+              <td style="padding:10px 12px;color:#6B6B76;font-size:0.78rem;">Top Corners</td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">Settings, Player Profile</td>
+              <td style="text-align:center;padding:10px 12px;"><span style="background:#fef3e2;color:#855300;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:500;">Moderate</span></td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">Administrative tools expected in upper corners, consistent with other mobile app conventions.</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 12px;font-weight:600;color:#14213D;font-size:0.82rem;">Session Anchor</td>
+              <td style="padding:10px 12px;color:#6B6B76;font-size:0.78rem;">Center Screen</td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">Level Play Button, Active Wildlife</td>
+              <td style="text-align:center;padding:10px 12px;"><span style="background:#e6f0e6;color:#2d6a2d;padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:500;">High</span></td>
+              <td style="padding:10px 12px;color:#3a3a3a;font-size:0.78rem;">Core elements providing immediate session orientation — the primary reason players open the game.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:var(--offwhite);border-left:4px solid var(--gold);">
+        <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;">Features With No Clear Home</p>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <div style="display:flex;gap:0.75rem;font-size:0.82rem;color:#3a3a3a;">
+            <span style="color:var(--gold);font-weight:700;flex-shrink:0;">Dictionary</span>
+            <span>Players rarely use this from the Home Screen — most felt it belongs contextually within the puzzle board during gameplay.</span>
+          </div>
+          <div style="display:flex;gap:0.75rem;font-size:0.82rem;color:#3a3a3a;">
+            <span style="color:var(--gold);font-weight:700;flex-shrink:0;">Piggy Bank</span>
+            <span>Frequently omitted (5 of 8 players) — perceived as non-essential and not a driver of engagement.</span>
+          </div>
+          <div style="display:flex;gap:0.75rem;font-size:0.82rem;color:#3a3a3a;">
+            <span style="color:var(--gold);font-weight:700;flex-shrink:0;">Player Profile</span>
+            <span>No dominant placement pattern — appeared in Bottom Bar (4), Top (2), Left (1), Right (1), suggesting it lacks a consistent mental anchor.</span>
+          </div>
+        </div>
+      </div>
       <figcaption>Zone map synthesized from session findings and delivered to cross-functional teams</figcaption>
     </figure>
   </div>
