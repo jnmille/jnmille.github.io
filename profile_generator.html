@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Application Prompt Generator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f7f5f0;
+    --accent: #c8553d;
+    --accent-light: #f2e8e5;
+    --muted: #7a7a8a;
+    --border: #ddd9d0;
+    --success: #2d6a4f;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  header {
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  header p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    font-weight: 300;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .field-group {
+    margin-bottom: 1.75rem;
+  }
+
+  textarea, input[type="text"] {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink);
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.875rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+    line-height: 1.6;
+  }
+
+  textarea:focus, input[type="text"]:focus {
+    border-color: var(--ink);
+  }
+
+  textarea::placeholder, input::placeholder {
+    color: #bbb;
+  }
+
+  .prompt-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .prompt-type-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.875rem 1rem;
+    cursor: pointer;
+    background: white;
+    transition: all 0.15s;
+    text-align: left;
+  }
+
+  .prompt-type-card:hover {
+    border-color: var(--ink);
+  }
+
+  .prompt-type-card.selected {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .prompt-type-card input {
+    display: none;
+  }
+
+  .prompt-type-card .card-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  .prompt-type-card .card-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .generate-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--ink);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: opacity 0.15s;
+    margin-bottom: 2rem;
+  }
+
+  .generate-btn:hover { opacity: 0.85; }
+  .generate-btn:active { opacity: 0.7; }
+
+  .output-section {
+    display: none;
+  }
+
+  .output-section.visible {
+    display: block;
+  }
+
+  .output-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .prompt-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.25rem;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink);
+    white-space: pre-wrap;
+    margin-bottom: 1rem;
+  }
+
+  .copy-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.02em;
+  }
+
+  .copy-btn:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  .copy-btn.copied {
+    color: var(--success);
+    border-color: var(--success);
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  .tip {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding: 0.875rem 1rem;
+    background: white;
+    border-left: 2px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Job Application Prompt Generator</h1>
+    <p>Paste a job description and generate tailored prompts for Claude to use with your resume.</p>
+  </header>
+
+  <div class="field-group">
+    <div class="section-label">Job Description</div>
+    <textarea id="job-desc" rows="10" placeholder="Paste the full job description here..."></textarea>
+  </div>
+
+  <div class="field-group">
+    <div class="section-label">Company Name (optional)</div>
+    <input type="text" id="company-name" placeholder="e.g. TikTok, Scopely, Meta...">
+  </div>
+
+  <div class="field-group">
+    <div class="section-label">What do you need?</div>
+    <div class="prompt-type-grid" id="prompt-types">
+      <label class="prompt-type-card selected">
+        <input type="checkbox" value="resume_summary" checked>
+        <div class="card-title">Resume Summary</div>
+        <div class="card-desc">Tailored 3-sentence summary using job keywords</div>
+      </label>
+      <label class="prompt-type-card">
+        <input type="checkbox" value="cover_letter">
+        <div class="card-title">Cover Letter</div>
+        <div class="card-desc">Personalized cover letter matching the role</div>
+      </label>
+      <label class="prompt-type-card">
+        <input type="checkbox" value="linkedin_headline">
+        <div class="card-title">LinkedIn Headline</div>
+        <div class="card-desc">Keyword-optimized headline for this role type</div>
+      </label>
+      <label class="prompt-type-card">
+        <input type="checkbox" value="gap_analysis">
+        <div class="card-title">Gap Analysis</div>
+        <div class="card-desc">How well does my resume match this role?</div>
+      </label>
+      <label class="prompt-type-card">
+        <input type="checkbox" value="interview_prep">
+        <div class="card-title">Interview Prep</div>
+        <div class="card-desc">Likely questions based on the job description</div>
+      </label>
+      <label class="prompt-type-card">
+        <input type="checkbox" value="bullet_points">
+        <div class="card-title">Resume Bullets</div>
+        <div class="card-desc">Rewrite experience bullets to match this role</div>
+      </label>
+    </div>
+  </div>
+
+  <button class="generate-btn" onclick="generatePrompts()">Generate Prompts</button>
+
+  <div class="output-section" id="output-section">
+    <div class="output-header">
+      <div class="section-label" style="margin-bottom:0">Generated Prompts</div>
+    </div>
+
+    <div id="prompts-container"></div>
+
+    <div class="tip">
+      Copy any prompt above and paste it into Claude along with your resume to get a tailored result for this role.
+    </div>
+  </div>
+</div>
+
+<script>
+  const resume = `JAZZMYNE MILLER — SENIOR UX RESEARCHER
+5+ years of experience in product and UX research on high-use mobile products with 10 million+ daily active users. Mixed-methods researcher with a strong background in survey research and statistical analysis including cluster analysis, regression, conjoint, key driver analysis, and segmentation. Well versed in moderated and unmoderated qualitative methods including usability studies, playtesting, interviews, and concept testing. Has conducted surveys with sample sizes of 3,000+ users, including a 200,000-person survey used to develop a player segmentation framework that continues to inform how product teams think about their users as the product evolves.
+
+EXPERIENCE:
+- Lead UX Researcher at PeopleFun (Wordscapes, ~10M DAU) — end-to-end research, player behavior, Continuous Insights Program, player panel, beta test program
+- UX Researcher at Meta — Messenger and Facebook Calling, brand tracking surveys across 5 markets, concept testing, rolling research program
+- Senior Consumer Research & Data Analyst at Mintel — survey design, cluster segmentation, multicultural reports, reduced fieldwork period by 25%
+
+SKILLS: SPSS, R, Python, Qualtrics, Alchemer, Lookback, dscout, PlaytestCloud, Figma, Mural, Confluence, Jira
+EDUCATION: MA Sociology, DePaul University | BS Sociology & Political Science, Illinois State University`;
+
+  const prompts = {
+    resume_summary: (jd, company) => `Here is a job description${company ? ` from ${company}` : ''}:
+
+${jd}
+
+Here is my resume:
+
+${resume}
+
+Please write a tailored 3-sentence resume summary for this specific role. Use keywords and language from the job description. Write in third person, in the style of a professional resume summary. Do not mention specific company names or products from my resume. Focus on what the role is asking for.`,
+
+    cover_letter: (jd, company) => `Here is a job description${company ? ` from ${company}` : ''}:
+
+${jd}
+
+Here is my resume:
+
+${resume}
+
+Please write a tailored cover letter for this role. Keep it to 3 short paragraphs. Use a warm, confident, and human tone. Do not use generic phrases like "I am passionate about" or "I am excited to apply." Focus on what I bring that directly matches what this role needs.`,
+
+    linkedin_headline: (jd, company) => `Here is a job description${company ? ` from ${company}` : ''}:
+
+${jd}
+
+Here is my resume:
+
+${resume}
+
+Based on the keywords in this job description and my background, write 3 LinkedIn headline options. Format: [Title] | [Keyword] | [Value statement]. Keep each headline under 220 characters. No em dashes.`,
+
+    gap_analysis: (jd, company) => `Here is a job description${company ? ` from ${company}` : ''}:
+
+${jd}
+
+Here is my resume:
+
+${resume}
+
+Please do an honest gap analysis. What are my strongest matches for this role? What are the gaps or potential concerns a recruiter might flag? Be direct and specific.`,
+
+    interview_prep: (jd, company) => `Here is a job description${company ? ` from ${company}` : ''}:
+
+${jd}
+
+Here is my resume:
+
+${resume}
+
+Based on this job description and my background, what are the 8 most likely interview questions I would be asked? Include both behavioral and role-specific questions. For each question, suggest the key points I should hit in my answer based on my experience.`,
+
+    bullet_points: (jd, company) => `Here is a job description${company ? ` from ${company}` : ''}:
+
+${jd}
+
+Here is my resume:
+
+${resume}
+
+Please rewrite my PeopleFun and Meta experience bullets to better match the language and priorities of this job description. Keep the bullets accurate to what I actually did. Use strong action verbs. Do not fabricate or exaggerate.`
+  };
+
+  document.querySelectorAll('.prompt-type-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('selected');
+    });
+  });
+
+  function generatePrompts() {
+    const jd = document.getElementById('job-desc').value.trim();
+    const company = document.getElementById('company-name').value.trim();
+
+    if (!jd) {
+      alert('Please paste a job description first.');
+      return;
+    }
+
+    const selected = Array.from(document.querySelectorAll('.prompt-type-card.selected input')).map(i => i.value);
+
+    if (selected.length === 0) {
+      alert('Please select at least one prompt type.');
+      return;
+    }
+
+    const container = document.getElementById('prompts-container');
+    container.innerHTML = '';
+
+    const titles = {
+      resume_summary: 'Resume Summary Prompt',
+      cover_letter: 'Cover Letter Prompt',
+      linkedin_headline: 'LinkedIn Headline Prompt',
+      gap_analysis: 'Gap Analysis Prompt',
+      interview_prep: 'Interview Prep Prompt',
+      bullet_points: 'Resume Bullets Prompt'
+    };
+
+    selected.forEach(type => {
+      const promptText = prompts[type](jd, company);
+      const wrapper = document.createElement('div');
+      wrapper.style.marginBottom = '1.5rem';
+
+      wrapper.innerHTML = `
+        <div class="output-header">
+          <div class="section-label" style="margin-bottom:0">${titles[type]}</div>
+          <button class="copy-btn" onclick="copyPrompt(this, \`${promptText.replace(/`/g, '\\`')}\`)">Copy</button>
+        </div>
+        <div class="prompt-box">${promptText.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+        <hr class="divider" style="margin: 1rem 0;">
+      `;
+      container.appendChild(wrapper);
+    });
+
+    document.getElementById('output-section').classList.add('visible');
+    document.getElementById('output-section').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function copyPrompt(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
